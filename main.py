@@ -10,7 +10,8 @@ if __name__ == "__main__":
         exit(1)
     else:
         district1 = argv[1]
-        print(district.District(district1).visualise())
+        district.District(district1).visualise()
+       
 
 
     
