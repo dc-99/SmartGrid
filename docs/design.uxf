@@ -5,10 +5,11 @@ y
 max output
 -
 Methods:
-load_houses()
+
 </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>380</x><y>230</y><w>100</w><h>140</h></coordinates><panel_attributes>Battery
 -
-position (x,y)
+x
+y
 capacity
 -
 Methods:
@@ -17,4 +18,12 @@ load_batteries()
 -
 
 -
-Methods:</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>170</x><y>150</y><w>100</w><h>100</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;80;80;10</additional_attributes></element><element><id>Relation</id><coordinates><x>340</x><y>150</y><w>80</w><h>100</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>60;80;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>220</x><y>300</y><w>180</w><h>30</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;160;10</additional_attributes></element></diagram>
+Methods:
+load_houses()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>170</x><y>150</y><w>100</w><h>100</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;80;80;10</additional_attributes></element><element><id>Relation</id><coordinates><x>340</x><y>150</y><w>80</w><h>100</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>60;80;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>220</x><y>300</y><w>180</w><h>30</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;160;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>480</x><y>30</y><w>100</w><h>130</h></coordinates><panel_attributes>Connection
+-
+length
+battery_id
+house_id
+x,y : [] 
+-
+Methods:</panel_attributes><additional_attributes></additional_attributes></element></diagram>

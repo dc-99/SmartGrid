@@ -1,6 +1,6 @@
 class House():
-    def __init__(self, district):
-        self.houses = {}
-    
-    def load_houses(self):
-        pass
+    def __init__(self, uid, x, y, maxoutput):
+        self.id = uid
+        self.x = x
+        self.y = y
+        self.maxoutput = maxoutput
