@@ -10,12 +10,13 @@ class District():
         houses = {}
 
         with open(house_file, 'r') as in_file:
+            print(in_file)
             reader = csv.DictReader(in_file)
 
             # for row in reader:
             #     houses[row['id']] = House(row['id'], row['id'])
 
-        return houses
+        #return houses
 
     def load_grid(self):
         dictionary = {}
