@@ -13,6 +13,7 @@ class District():
     def load_houses(self, house_file):
         # houses = {}
         with open(house_file, 'r') as in_file:
+            print(in_file)
             reader = csv.DictReader(in_file)
             counter = 0
             for row in reader:
@@ -44,7 +45,7 @@ class District():
             houses_xdata.append(x)
             houses_ydata.append(y)
 
-        
+
         
         
 
