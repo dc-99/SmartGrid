@@ -2,6 +2,15 @@ from code.classes import district
 import numpy
 
 if __name__ == "__main__":
-    print(district.District(house_file))
+    from sys import argv
 
-    print(disctrict.District.load_houses())
+    # check command line arguments
+    if len(argv) not 2:
+        print("Usage: python main.py [district]")
+        exit(1)
+    else:
+        district = argv[1]
+
+    print(district.District(district))
+
+    
