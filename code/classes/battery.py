@@ -1,6 +1,7 @@
 class Battery():
-    def __init__(self, uid, position, maxoutput):
+    def __init__(self, uid, x, y, maxoutput):
         self.id = uid
-        self.position = position
+        self.x = x
+        self.y =y
         self.maxoutput = maxoutput
     
