@@ -1,32 +1,32 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>190</x><y>220</y><w>100</w><h>140</h></coordinates><panel_attributes>House
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>39</x><y>220</y><w>100</w><h>140</h></coordinates><panel_attributes>House
 -
+id
 x
 y
 max output
--
-Methods:
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>380</x><y>230</y><w>100</w><h>140</h></coordinates><panel_attributes>Battery
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>229</x><y>230</y><w>100</w><h>140</h></coordinates><panel_attributes>Battery
 -
+id
 x
 y
 capacity
--
-Methods:
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>190</x><y>40</y><w>100</w><h>140</h></coordinates><panel_attributes>District
--
 
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>39</x><y>40</y><w>100</w><h>140</h></coordinates><panel_attributes>District
+-
+district file
 -
 Methods:
 load_houses()
 load_batteries()
-load_grid()
+make_connections()
 visualise()
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>370</x><y>50</y><w>100</w><h>130</h></coordinates><panel_attributes>Connection
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>219</x><y>50</y><w>100</w><h>130</h></coordinates><panel_attributes>Connection
 -
-length
+id
 battery_id
 house_id
-x,y : [] 
--
-Methods:</panel_attributes><additional_attributes></additional_attributes></element></diagram>
+x coordinates: []
+y coordinates: []
+</panel_attributes><additional_attributes></additional_attributes></element></diagram>
