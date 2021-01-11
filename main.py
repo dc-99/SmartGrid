@@ -12,5 +12,3 @@ if __name__ == "__main__":
         district = argv[1]
 
     #print(district.District(district))
-
-    

@@ -1,6 +1,4 @@
 class House():
-    def __init__(self, district):
+    def __init__(self, ):
         self.houses = {}
-    
-    def load_houses(self):
-        pass
+        self.id = uid

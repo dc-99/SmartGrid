@@ -1,22 +1,25 @@
 import csv
+from .house import House
 
 
 class District():
-    def __init__(self, district):
-        self.load_houses(f"data/{district}/{district}houses.csv")
-        
-
+    def __init__(self, house_file):
+        self.houses = self.load_houses(f"data/{district}/{district}houses.csv")
+           
     def load_houses(self, house_file):
+        """
+        Load all the houses into the district.
+        """
         houses = {}
 
         with open(house_file, 'r') as in_file:
-            print(in_file)
+
             reader = csv.DictReader(in_file)
 
-            # for row in reader:
-            #     houses[row['id']] = House(row['id'], row['id'])
+            for row in reader:
+                nodes[row['id']] = Node(row['id'], row['id'])
 
-        #return houses
+        return nodes
 
     def load_grid(self):
         dictionary = {}
