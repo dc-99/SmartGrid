@@ -9,6 +9,9 @@ if __name__ == "__main__":
         print("Usage: python main.py [district]")
         exit(1)
     else:
-        district = argv[1]
+        district1 = argv[1]
+        district.District(district1).visualise()
+       
 
-    #print(district.District(district))
+
+    
