@@ -86,4 +86,7 @@ class District():
             xlist = [self.houses[connection].x, self.batteries[self.connections[connection].battery_id].x, self.batteries[self.connections[connection].battery_id].x]
             ylist = [self.houses[connection].y, self.houses[connection].y, self.batteries[self.connections[connection].battery_id].y]
             plt.plot(xlist, ylist)
+        plt.xlabel("x-coordinates")
+        plt.ylabel("y-coordinates")
+        plt.title("Houses (red) and batteries (blue) in district 1 randomly connected")
         plt.show()
