@@ -75,63 +75,65 @@ class District():
             
             self.houses_x.append(x)
             self.houses_y.append(y)
+    
+    def calculate_costs(self):
+        pass
+    
+    # def load_batteries(self, battery_file):
+    #     """
+    #     Loads batteries from csv file and saves coordinates and capacity in Battery object
+    #     """
+    #     with open(battery_file, 'r') as in_file:
+    #         reader = csv.DictReader(in_file)
 
-    """
-    def load_batteries(self, battery_file):
-        """
-        Loads batteries from csv file and saves coordinates and capacity in Battery object
-        """
-        with open(battery_file, 'r') as in_file:
-            reader = csv.DictReader(in_file)
-
-            # splits position variable in data to separate x and y coordinates
-            counter = 0
-            for row in reader:
-                newposition = row['positie'].split(',')
-                self.batteries_x.append(int(newposition[0]))
-                self.batteries_y.append(int(newposition[1]))
-                currentcapacity = 0.0
-                self.batteries[counter] = Battery(counter, int(newposition[0]), int(newposition[1]), float(row['capaciteit']), currentcapacity)
-                counter += 1
+    #         # splits position variable in data to separate x and y coordinates
+    #         counter = 0
+    #         for row in reader:
+    #             newposition = row['positie'].split(',')
+    #             self.batteries_x.append(int(newposition[0]))
+    #             self.batteries_y.append(int(newposition[1]))
+    #             currentcapacity = 0.0
+    #             self.batteries[counter] = Battery(counter, int(newposition[0]), int(newposition[1]), float(row['capaciteit']), currentcapacity)
+    #             counter += 1
 
 
-    def make_connections(self):
-        """
-        Connects every house to a random battery
-        """
-        for house in self.houses:
-            house_x = self.houses[house].x 
-            house_y = self.houses[house].y 
-            house_id = self.houses[house].id
+    # def make_connections(self):
+    #     """
+    #     # Connects every house to a random battery
+    #     """
+    #     for house in self.houses:
+    #         house_x = self.houses[house].x 
+    #         house_y = self.houses[house].y 
+    #         house_id = self.houses[house].id
 
-            # Chooses a random battery from the list of batteries
-            connected = False
-            while connected == False:
-                random_battery = choice(self.batteries)
-                if (random_battery.currentcapacity + self.houses[house].maxoutput) <= random_battery.maxcapacity:
-                    connected = True
-                    random_battery.currentcapacity = random_battery.currentcapacity + self.houses[house].maxoutput
-                    battery_x = random_battery.x
-                    battery_y = random_battery.y
-                    battery_id = random_battery.id
-                    self.connections[house] = Connections(house, house_id, battery_id)
+    #         # Chooses a random battery from the list of batteries
+    #         connected = False
+    #         while connected == False:
+    #             random_battery = choice(self.batteries)
+    #             if (random_battery.currentcapacity + self.houses[house].maxoutput) <= random_battery.maxcapacity:
+    #                 connected = True
+    #                 random_battery.currentcapacity = random_battery.currentcapacity + self.houses[house].maxoutput
+    #                 battery_x = random_battery.x
+    #                 battery_y = random_battery.y
+    #                 battery_id = random_battery.id
+    #                 self.connections[house] = Connections(house, house_id, battery_id)
                 
 
-    def visualise(self):
-        """
-        Visualises all batteries and houses with connections in a plot
-        """
-        fig=plt.figure()
-        plt.scatter(self.houses_x, self.houses_y, color='r')
-        plt.scatter(self.batteries_x, self.batteries_y, color='b')
+    # def visualise(self):
+    #     """
+    #     Visualises all batteries and houses with connections in a plot
+    #     """
+    #     fig=plt.figure()
+    #     plt.scatter(self.houses_x, self.houses_y, color='r')
+    #     plt.scatter(self.batteries_x, self.batteries_y, color='b')
 
-        # Loops trough all connections and draws lines between all given points
-        for connection in self.connections:
-            xlist = [self.houses[connection].x, self.batteries[self.connections[connection].battery_id].x, self.batteries[self.connections[connection].battery_id].x]
-            ylist = [self.houses[connection].y, self.houses[connection].y, self.batteries[self.connections[connection].battery_id].y]
-            plt.plot(xlist, ylist)
-        plt.xlabel("x-coordinates")
-        plt.ylabel("y-coordinates")
-        plt.title("Houses (red) and batteries (blue) in district 1 randomly connected")
-        plt.show()
-    """
+    #     # Loops trough all connections and draws lines between all given points
+    #     for connection in self.connections:
+    #         xlist = [self.houses[connection].x, self.batteries[self.connections[connection].battery_id].x, self.batteries[self.connections[connection].battery_id].x]
+    #         ylist = [self.houses[connection].y, self.houses[connection].y, self.batteries[self.connections[connection].battery_id].y]
+    #         plt.plot(xlist, ylist)
+    #     plt.xlabel("x-coordinates")
+    #     plt.ylabel("y-coordinates")
+    #     plt.title("Houses (red) and batteries (blue) in district 1 randomly connected")
+    #     plt.show()
+    
