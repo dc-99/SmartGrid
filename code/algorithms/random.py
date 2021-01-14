@@ -1,5 +1,4 @@
-from code.classes.district import District
-from code.classes.connections import Connections
+from .classes import district
 import numpy
 from random import choice
 import sys
