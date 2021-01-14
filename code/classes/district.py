@@ -64,26 +64,26 @@ class District():
                 counter += 1
 
 
-    def make_connections(self):
-        """
-        Connects every house to a random battery
-        """
-        for house in self.houses:
-            house_x = self.houses[house].x 
-            house_y = self.houses[house].y 
-            house_id = self.houses[house].id
+    # def make_connections(self):
+    #     """
+    #     Connects every house to a random battery
+    #     """
+    #     for house in self.houses:
+    #         house_x = self.houses[house].x 
+    #         house_y = self.houses[house].y 
+    #         house_id = self.houses[house].id
 
-            # Chooses a random battery from the list of batteries
-            connected = False
-            while connected == False:
-                random_battery = choice(self.batteries)
-                if (random_battery.currentcapacity + self.houses[house].maxoutput) <= random_battery.maxcapacity:
-                    connected = True
-                    random_battery.currentcapacity = random_battery.currentcapacity + self.houses[house].maxoutput
-                    battery_x = random_battery.x
-                    battery_y = random_battery.y
-                    battery_id = random_battery.id
-                    self.connections[house] = Connections(house, house_id, battery_id)
+    #         # Chooses a random battery from the list of batteries
+    #         connected = False
+    #         while connected == False:
+    #             random_battery = choice(self.batteries)
+    #             if (random_battery.currentcapacity + self.houses[house].maxoutput) <= random_battery.maxcapacity:
+    #                 connected = True
+    #                 random_battery.currentcapacity = random_battery.currentcapacity + self.houses[house].maxoutput
+    #                 battery_x = random_battery.x
+    #                 battery_y = random_battery.y
+    #                 battery_id = random_battery.id
+    #                 self.connections[house] = Connections(house, house_id, battery_id)
                 
     # def get_connections(self):
     #     return self.batteries
@@ -96,7 +96,6 @@ class District():
         fig=plt.figure()
         plt.scatter(self.houses_x, self.houses_y, color='r')
         plt.scatter(self.batteries_x, self.batteries_y, color='b')
-        self.make_connections()
 
         # Loops trough all connections and draws lines between all given points
         for connection in self.connections:
