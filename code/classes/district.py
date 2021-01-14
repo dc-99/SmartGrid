@@ -17,7 +17,15 @@ class District():
         self.load_houses(f"data/{district}/{district}houses.csv")
         self.load_batteries(f"data/{district}/{district}batteries.csv")
 
+    """
+    def get_house(self, house_id):
+        pass 
+
+    def get_battery(self, battery_id):
+        pass
     
+    """
+
     def load_houses(self, house_file):
         """
         Loads houses from csv file and saves coordinates and maxoutput in House object
@@ -77,6 +85,9 @@ class District():
                     battery_id = random_battery.id
                     self.connections[house] = Connections(house, house_id, battery_id)
                 
+    # def get_connections(self):
+    #     return self.batteries
+
 
     def visualise(self):
         """

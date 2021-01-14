@@ -6,3 +6,19 @@ class Battery():
         self.maxcapacity = maxcapacity
         self.currentcapacity = currentcapacity
     
+    # def load_batteries(self, battery_file):
+    #     """
+    #     Loads batteries from csv file and saves coordinates and capacity in Battery object
+    #     """
+    #     with open(battery_file, 'r') as in_file:
+    #         reader = csv.DictReader(in_file)
+
+    #         # splits position variable in data to separate x and y coordinates
+    #         counter = 0
+    #         for row in reader:
+    #             newposition = row['positie'].split(',')
+    #             self.batteries_x.append(int(newposition[0]))
+    #             self.batteries_y.append(int(newposition[1]))
+    #             currentcapacity = 0.0
+    #             self.batteries[counter] = Battery(counter, int(newposition[0]), int(newposition[1]), float(row['capaciteit']), currentcapacity)
+    #             counter += 1

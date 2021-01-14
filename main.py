@@ -1,4 +1,4 @@
-from code.classes import district
+from code.classes import district, costs
 import numpy
 
 if __name__ == "__main__":
@@ -11,6 +11,7 @@ if __name__ == "__main__":
     else:
         district1 = argv[1]
         district.District(district1).visualise()
+        costs.Costs(district1).check()
        
 
 
