@@ -18,7 +18,7 @@ class House():
                     counter += 1
 
     #         Zie comment Bas: niet nodig om x en y nog in aparte lijsten op te slaan
-    
+
     #         # creates lists for x and y house coordinates
     #         for house in self.houses:
     #             x = self.houses[house].x

@@ -7,6 +7,11 @@ import matplotlib.pyplot as plt
 
 class District():
     def __init__(self, district):
+        # NIEUW:
+        self.houses = House.load_houses(f"data/{district}/{district}houses.csv")
+        self.batteries = Battery.load_batteries(f"data/{district}/{district}batteries.csv")
+        # self.connections = HIERIN OUTPUT VAN MAKE_CONNECTIONS OPSLAAN (DICTIONARY)?
+
         # OUD: 
         # self.houses = {}
         # self.batteries = {}
@@ -18,10 +23,6 @@ class District():
         # self.batteries_x = []
         # self.batteries_y = []
 
-        # NIEUW:
-        # self.houses = House.load_houses(f"data/{district}/{district}houses.csv")
-        # self.batteries = Battery.load_batteries(f"data/{district}/{district}batteries.csv")
-        # self.connections = HIERIN OUTPUT VAN MAKE_CONNECTIONS OPSLAAN (DICTIONARY)?
 
     def get_house(self, house_id):
         house = House.objects.get(id=house_id)
@@ -29,13 +30,16 @@ class District():
     def get_battery(self, battery_id):
         battery = Battery.objects.get(id=battery_id)
 
+    # Verplaatsen naar mapje visualisation?
     def visualise(self):
         """
         Visualises all batteries and houses with connections in a plot
         """
         fig=plt.figure()
-        plt.scatter(self.houses_x, self.houses_y, color='r')
-        plt.scatter(self.batteries_x, self.batteries_y, color='b')
+
+        # Dit kan weg als het onderstaande werkt!
+        # plt.scatter(self.houses_x, self.houses_y, color='r')
+        # plt.scatter(self.batteries_x, self.batteries_y, color='b')
 
         """
         Als dit werkt dan kunnen die lijsten met alleen x en alleen y worden verwijderd!
@@ -56,29 +60,44 @@ class District():
         plt.title("Houses (red) and batteries (blue) in district 1 randomly connected")
         plt.show()
 
-
-    def load_houses(self, house_file):
-        """
-        Loads houses from csv file and saves coordinates and maxoutput in House object
-        """
-        with open(house_file, 'r') as in_file:
+    """
+    def calculate_cost(self, battery_file):
+         with open(battery_file, 'r') as in_file:
             reader = csv.DictReader(in_file)
-            counter = 0
-            for row in reader:
-                self.houses[counter] = House(counter, int(row['x']), int(row['y']), float(row['maxoutput']))
-                counter += 1
 
-        # creates lists for x and y house coordinates
-        for house in self.houses:
-            x = self.houses[house].x
-            y = self.houses[house].y
+            # Calculate battery cost
+            batteries = 0
+            for row in reader:
+                batteries += 1
+            battery_cost = batteries * 5000
+
+        # Calculate connection cost
+        # connection_cost = nr of gridsegments * 9
+
+        # Total cost
+        total_cost = battery_cost + connection_cost
+    """
+    
+    # def load_houses(self, house_file):
+    #     """
+    #     Loads houses from csv file and saves coordinates and maxoutput in House object
+    #     """
+    #     with open(house_file, 'r') as in_file:
+    #         reader = csv.DictReader(in_file)
+    #         counter = 0
+    #         for row in reader:
+    #             self.houses[counter] = House(counter, int(row['x']), int(row['y']), float(row['maxoutput']))
+    #             counter += 1
+
+    #     # creates lists for x and y house coordinates
+    #     for house in self.houses:
+    #         x = self.houses[house].x
+    #         y = self.houses[house].y
             
-            self.houses_x.append(x)
-            self.houses_y.append(y)
-    
-    def calculate_costs(self):
-        pass
-    
+    #         self.houses_x.append(x)
+    #         self.houses_y.append(y)
+
+
     # def load_batteries(self, battery_file):
     #     """
     #     Loads batteries from csv file and saves coordinates and capacity in Battery object
