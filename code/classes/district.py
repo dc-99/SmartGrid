@@ -10,6 +10,7 @@ class District():
         # NIEUW:
         self.houses = House.load_houses(f"data/{district}/{district}houses.csv")
         self.batteries = Battery.load_batteries(f"data/{district}/{district}batteries.csv")
+        # self.calculate_cost(f"data/{district}/{district}batteries.csv")
         # self.connections = HIERIN OUTPUT VAN MAKE_CONNECTIONS OPSLAAN (DICTIONARY)?
 
         # OUD: 
@@ -75,7 +76,7 @@ class District():
         # connection_cost = nr of gridsegments * 9
 
         # Total cost
-        total_cost = battery_cost + connection_cost
+        # total_cost = battery_cost + connection_cost
     """
     
     # def load_houses(self, house_file):

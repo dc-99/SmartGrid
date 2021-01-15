@@ -4,7 +4,7 @@ class House():
         self.x = x
         self.y = y
         self.maxoutput = maxoutput
-        self.houses = self.load_houses(f"data/{district}/{district}houses.csv")
+        # self.houses = self.load_houses(f"data/{district}/{district}houses.csv")
 
     def load_houses(self, house_file):
             """

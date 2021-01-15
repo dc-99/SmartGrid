@@ -6,7 +6,7 @@ class Battery():
         self.maxcapacity = maxcapacity
         self.currentcapacity = currentcapacity
 
-        # self.batteries =self.load_batteries(f"data/{district}/{district}batteries.csv")
+        # self.batteries = self.load_batteries(f"data/{district}/{district}batteries.csv")
     
     def load_batteries(self, battery_file):
         """
