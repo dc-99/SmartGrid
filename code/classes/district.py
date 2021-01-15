@@ -62,7 +62,7 @@ class District():
 
     """
     def calculate_cost(self, battery_file):
-         with open(battery_file, 'r') as in_file:
+        with open(battery_file, 'r') as in_file:
             reader = csv.DictReader(in_file)
 
             # Calculate battery cost
