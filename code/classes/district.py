@@ -1,8 +1,8 @@
 import csv
 from random import choice
-from .house import House
-from .battery import Battery
-from .connections import Connections
+from house import House
+from battery import Battery
+from connections import Connections
 import matplotlib.pyplot as plt
 
 class District():
@@ -14,8 +14,8 @@ class District():
         self.batteries_x = []
         self.batteries_y = []
         self.connections = {}
-        self.load_houses(f"data/{district}/{district}houses.csv")
-        self.load_batteries(f"data/{district}/{district}batteries.csv")
+        self.load_houses(f"../data/{district}/{district}houses.csv")
+        self.load_batteries(f"../data/{district}/{district}batteries.csv")
 
     """
     def get_house(self, house_id):

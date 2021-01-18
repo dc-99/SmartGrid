@@ -3,6 +3,7 @@ from .district import District
 
 class Costs():
     def __init__(self, district):
+        pass
         
 
    

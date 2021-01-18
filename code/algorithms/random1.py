@@ -1,7 +1,16 @@
-from .classes import district
+import os, sys
+currDir = os.path.dirname(os.path.realpath(__file__))
+rootDir = os.path.abspath(os.path.join(currDir, '../classes'))
+print(rootDir)
+if rootDir not in sys.path:     
+    sys.path.append(rootDir)
+
+from district import District
+from connections import Connections
 import numpy
+import random
 from random import choice
-import sys
+
 
 if __name__ == "__main__":
 
