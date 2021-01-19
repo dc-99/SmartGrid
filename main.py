@@ -1,4 +1,4 @@
-from code.algorithms import randomise
+from code.algorithms import randomise, hillclimber
 import sys, os
 
 currDir = os.path.dirname(os.path.realpath(__file__))
@@ -9,6 +9,7 @@ if rootDir not in sys.path:
 
 from district import District
 from connections import Connections
+import copy
 
 
 if __name__ == "__main__":
@@ -23,3 +24,11 @@ if __name__ == "__main__":
 # --------------------------- Random reassignment --------------------------
 
 randomise.random_assignment(district)
+
+# --------------------------- Hillclimber --------------------------
+
+district = hillclimber.randomSolution(district)
+backupsolution = copy.deepcopy(district)
+bestlength = hillclimber.swapbatteries(district)
+totalcost = hillclimber.calculate_cost(district, bestlength)
+print(bestlength, totalcost)
