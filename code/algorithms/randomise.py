@@ -10,23 +10,13 @@ from connections import Connections
 import numpy
 import random
 from random import choice
-
-
-if __name__ == "__main__":
-
-    # check command line arguments
-    if len(sys.argv) != 2:
-        print("Usage: python main.py [district]")
-        exit(1)
-    infile = sys.argv[1]
-    district = District(infile)
-
+ 
+def random_assignment(district):
     for house in district.houses:
         house_x = district.houses[house].x 
         house_y = district.houses[house].y 
         house_id = district.houses[house].id
 
-        # Chooses a random battery from the list of batteries
         connected = False
         while connected == False:
             random_battery = choice(district.batteries)

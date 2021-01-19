@@ -8,15 +8,17 @@ import matplotlib.pyplot as plt
 class District():
     def __init__(self, district):
         # NIEUW:
-        self.houses = House.load_houses(f"../data/{district}/{district}houses.csv")
-        self.batteries = Battery.load_batteries(f"../data/{district}/{district}batteries.csv")
+        self.houses = {}
+        self.load_houses(f"data/{district}/{district}houses.csv")
+        self.batteries = {}
+        self.load_batteries(f"data/{district}/{district}batteries.csv")
         # self.calculate_cost(f"data/{district}/{district}batteries.csv")
         # self.connections = HIERIN OUTPUT VAN MAKE_CONNECTIONS OPSLAAN (DICTIONARY)?
 
         # OUD: 
         # self.houses = {}
         # self.batteries = {}
-        # self.connections = {}
+        self.connections = {}
 
         # VOLGENS BAS IS DIT DUS DUBBELOP, ZIE AANPASSING IN VISUALISE(), ALS DAT WERKT KAN DIT WEG!!! 
         # self.houses_x = []
@@ -79,16 +81,16 @@ class District():
         # total_cost = battery_cost + connection_cost
     """
     
-    # def load_houses(self, house_file):
-    #     """
-    #     Loads houses from csv file and saves coordinates and maxoutput in House object
-    #     """
-    #     with open(house_file, 'r') as in_file:
-    #         reader = csv.DictReader(in_file)
-    #         counter = 0
-    #         for row in reader:
-    #             self.houses[counter] = House(counter, int(row['x']), int(row['y']), float(row['maxoutput']))
-    #             counter += 1
+    def load_houses(self, house_file):
+        """
+        Loads houses from csv file and saves coordinates and maxoutput in House object
+        """
+        with open(house_file, 'r') as in_file:
+            reader = csv.DictReader(in_file)
+            counter = 0
+            for row in reader:
+                self.houses[counter] = House(counter, int(row['x']), int(row['y']), float(row['maxoutput']))
+                counter += 1
 
     #     # creates lists for x and y house coordinates
     #     for house in self.houses:
@@ -99,22 +101,22 @@ class District():
     #         self.houses_y.append(y)
 
 
-    # def load_batteries(self, battery_file):
-    #     """
-    #     Loads batteries from csv file and saves coordinates and capacity in Battery object
-    #     """
-    #     with open(battery_file, 'r') as in_file:
-    #         reader = csv.DictReader(in_file)
+    def load_batteries(self, battery_file):
+        """
+        Loads batteries from csv file and saves coordinates and capacity in Battery object
+        """
+        with open(battery_file, 'r') as in_file:
+            reader = csv.DictReader(in_file)
 
-    #         # splits position variable in data to separate x and y coordinates
-    #         counter = 0
-    #         for row in reader:
-    #             newposition = row['positie'].split(',')
-    #             self.batteries_x.append(int(newposition[0]))
-    #             self.batteries_y.append(int(newposition[1]))
-    #             currentcapacity = 0.0
-    #             self.batteries[counter] = Battery(counter, int(newposition[0]), int(newposition[1]), float(row['capaciteit']), currentcapacity)
-    #             counter += 1
+            # splits position variable in data to separate x and y coordinates
+            counter = 0
+            for row in reader:
+                newposition = row['positie'].split(',')
+                # self.batteries_x.append(int(newposition[0]))
+                # self.batteries_y.append(int(newposition[1]))
+                currentcapacity = 0.0
+                self.batteries[counter] = Battery(counter, int(newposition[0]), int(newposition[1]), float(row['capaciteit']), currentcapacity)
+                counter += 1
 
 
     # def make_connections(self):
