@@ -1,4 +1,5 @@
 import random
 from district import District
 
-def
+def nearest(district):
+    pass

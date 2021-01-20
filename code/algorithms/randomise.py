@@ -11,21 +11,31 @@ import numpy
 import random
 from random import choice
  
-def random_assignment(district):
+def random_assignment(district, maxcount=50):
+    district.connections = {}
+    for battery in district.batteries:
+        district.batteries[battery].currentcapacity = 0.0
+
     for house in district.houses:
         connected = False
-        while connected == False:
+        counter = 0 
+        while connected == False and counter < maxcount:
+            counter += 1
             random_battery = choice(district.batteries)
             if (random_battery.currentcapacity + district.houses[house].maxoutput) <= random_battery.maxcapacity:
                 connected = True
                 random_battery.currentcapacity = random_battery.currentcapacity + district.houses[house].maxoutput
                 battery_id = random_battery.id
                 district.connections[house] = battery_id
-            # else:
-                # huis ontkoppelen en opnieuw proberen
-
     return district      
     # district.visualise()
+
+def random_assignment_repeat(district):
+    while True:
+        random_assignment(district)
+        if len(district.connections) == len(district.houses):
+            return district
+
     
 
 

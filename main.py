@@ -23,7 +23,7 @@ if __name__ == "__main__":
 
 # --------------------------- Random reassignment --------------------------
 
-randomise.random_assignment(district)
+# randomise.random_assignment(district)
 
 # --------------------------- Hillclimber --------------------------
 
@@ -31,4 +31,5 @@ district = hillclimber.randomSolution(district)
 backupsolution = copy.deepcopy(district)
 bestlength = hillclimber.swapbatteries(district)
 totalcost = hillclimber.calculate_cost(district, bestlength)
+# district.visualise()
 print(bestlength, totalcost)

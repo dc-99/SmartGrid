@@ -1,11 +1,11 @@
 import random
 from district import District
-from .randomise import random_assignment
+from .randomise import random_assignment, random_assignment_repeat
 import copy 
 
 
 def randomSolution(district):
-    return random_assignment(district)
+    return random_assignment_repeat(district)
 
 
 def connectionLength(district):
@@ -23,7 +23,6 @@ def swapbatteries(district):
     bestlength = connectionLength(district)
     for i in range(len(district.connections)):
         for j in range(i+1, len(district.connections)):
-            print(i, j)
             currentstate.connections[i] = district.connections[j]
             currentstate.connections[j] = district.connections[i]
 
