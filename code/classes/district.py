@@ -12,20 +12,8 @@ class District():
         self.load_houses(f"data/{district}/{district}houses.csv")
         self.batteries = {}
         self.load_batteries(f"data/{district}/{district}batteries.csv")
-        # self.calculate_cost(f"data/{district}/{district}batteries.csv")
-        # self.connections = HIERIN OUTPUT VAN MAKE_CONNECTIONS OPSLAAN (DICTIONARY)?
-
-        # OUD: 
-        # self.houses = {}
-        # self.batteries = {}
-        # self.calculate_cost()
         self.connections = {}
 
-        # VOLGENS BAS IS DIT DUS DUBBELOP, ZIE AANPASSING IN VISUALISE(), ALS DAT WERKT KAN DIT WEG!!! 
-        # self.houses_x = []
-        # self.houses_y = []
-        # self.batteries_x = []
-        # self.batteries_y = []
 
     # def get_house(self, house_id):
     #     house = House.objects.get(id=house_id)
@@ -56,8 +44,6 @@ class District():
             counter = 0
             for row in reader:
                 newposition = row['positie'].split(',')
-                # self.batteries_x.append(int(newposition[0]))
-                # self.batteries_y.append(int(newposition[1]))
                 currentcapacity = 0.0
                 self.batteries[counter] = Battery(counter, int(newposition[0]), int(newposition[1]), float(row['capaciteit']), currentcapacity)
                 counter += 1
