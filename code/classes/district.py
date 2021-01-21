@@ -15,12 +15,6 @@ class District():
         self.connections = {}
 
 
-    # def get_house(self, house_id):
-    #     house = House.objects.get(id=house_id)
-
-    # def get_battery(self, battery_id):
-    #     battery = Battery.objects.get(id=battery_id)
-
     def load_houses(self, house_file):
         """
         Loads houses from csv file and saves coordinates and maxoutput in House object
@@ -29,7 +23,7 @@ class District():
             reader = csv.DictReader(in_file)
             counter = 0
             for row in reader:
-                self.houses[counter] = House(counter, int(row['x']), int(row['y']), float(row['maxoutput']))
+                self.houses[counter] = House(counter, int(row['x']), int(row['y']), float(row['maxoutput']), [])
                 counter += 1
 
 
@@ -48,28 +42,7 @@ class District():
                 self.batteries[counter] = Battery(counter, int(newposition[0]), int(newposition[1]), float(row['capaciteit']), currentcapacity)
                 counter += 1
 
-    # Verplaatsen naar mapje visualisation?
-    # def visualise(self):
-    #     """
-    #     Visualises all batteries and houses with connections in a plot
-    #     """
-    #     fig=plt.figure()
 
-    #     for house in self.houses:
-    #         plt.scatter(self.houses[house].x, self.houses[house].y, color='r')
-        
-    #     for battery in self.batteries:
-    #         plt.scatter(self.batteries[battery].x, self.batteries[battery].y, color='b')
-
-    #     # Loops trough all connections and draws lines between all given points
-    #     for connection in self.connections:
-    #         xlist = [self.houses[connection].x, self.batteries[self.connections[connection].battery_id].x, self.batteries[self.connections[connection].battery_id].x]
-    #         ylist = [self.houses[connection].y, self.houses[connection].y, self.batteries[self.connections[connection].battery_id].y]
-    #         plt.plot(xlist, ylist)
-    #     plt.xlabel("x-coordinates")
-    #     plt.ylabel("y-coordinates")
-    #     plt.title("Houses (red) and batteries (blue) in district 1 randomly connected")
-    #     plt.show()
 
 
 

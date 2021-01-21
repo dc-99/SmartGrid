@@ -15,8 +15,8 @@ def visualise(district):
 
         # Loops trough all connections and draws lines between all given points
         for connection in district.connections:
-            xlist = [district.houses[connection].x, district.batteries[district.connections[connection].battery_id].x, district.batteries[district.connections[connection].battery_id].x]
-            ylist = [district.houses[connection].y, district.houses[connection].y, district.batteries[district.connections[connection].battery_id].y]
+            xlist = [district.houses[connection].x, district.batteries[district.connections[connection]].x, district.batteries[district.connections[connection]].x]
+            ylist = [district.houses[connection].y, district.houses[connection].y, district.batteries[district.connections[connection]].y]
             plt.plot(xlist, ylist)
         
         plt.xlabel("x-coordinates")

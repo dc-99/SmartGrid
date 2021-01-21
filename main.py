@@ -37,12 +37,12 @@ print(bestlength, totalcost)
 
 # --------------------------- Visualisation / output -----------------------------------
 
-# visualisation.visualise(district)
+visualise.visualise(district)
 
 data = {}
 data['output'] = []
 
-output_district = {"district" : "nr district", "costs" : str(totalcost)}
+output_district = {"district" : str(sys.argv[1]), "costs" : str(totalcost)}
 data['output'].append(output_district)
 
 houses = []
