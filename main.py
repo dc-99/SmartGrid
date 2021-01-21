@@ -58,7 +58,7 @@ for battery in district.batteries:
         output_houses = {
             "location" : str(location),
             "output" : str(district.houses[house].maxoutput),
-            "cables" : "list of cable coordinates"
+            "cables" : district.houses[house].cables
         }
         listofhouses.append(output_houses)
 

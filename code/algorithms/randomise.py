@@ -47,11 +47,16 @@ def random_assignment(district, maxcount=50):
                     for y_coordinate in range(random_battery.y + 1, district.houses[house].y):
                         y_coordinates.append(y_coordinate)
                 
-        for i in x_coordinates:
-            coordinates = x_coordinates[i], y_coordinates[i]
+        for x in range(len(x_coordinates)):
+            coordinates = x_coordinates[x], district.houses[house].y
+            cables.append(str(coordinates))
+        
+        for y in range(len(y_coordinates)):
+            coordinates = random_battery.x, y_coordinates[y]
             cables.append(str(coordinates))
     
         district.houses[house].cables = cables
+
     return district      
 
 
