@@ -23,10 +23,3 @@ def visualise(district):
         plt.ylabel("y-coordinates")
         plt.title("Houses (red) and batteries (blue) in district 1 randomly connected")
         plt.show()
-
-def output():
-    data = {}
-    data['output'] = []
-
-    with open('data.txt', 'w') as outfile:
-        json.dump(data, outfile)

@@ -11,6 +11,7 @@ if rootDir not in sys.path:
 from district import District
 from connections import Connections
 import copy
+import json
 
 
 if __name__ == "__main__":
@@ -32,10 +33,43 @@ district = hillclimber.randomSolution(district)
 backupsolution = copy.deepcopy(district)
 bestlength = hillclimber.swapbatteries(district)
 totalcost = hillclimber.calculate_cost(district, bestlength)
-# district.visualise()
 print(bestlength, totalcost)
 
 # --------------------------- Visualisation / output -----------------------------------
 
-visualisation.visualise(district)
+# visualisation.visualise(district)
 
+data = {}
+data['output'] = []
+
+output_district = {"district" : "nr district", "costs" : str(totalcost)}
+data['output'].append(output_district)
+
+houses = []
+output_houses = {}
+listofhouses = []
+for battery in district.batteries:
+    for house in district.connections:
+        if district.connections[house] == battery:
+            houses.append(house)
+
+    for house in houses:
+        location = district.houses[house].x, district.houses[house].y
+        output_houses = {
+            "location" : str(location),
+            "output" : str(district.houses[house].maxoutput),
+            "cables" : "list of cable coordinates"
+        }
+        listofhouses.append(output_houses)
+
+    location = district.batteries[battery].x, district.batteries[battery].y
+    output_battery = {
+        "location" : str(location), 
+        "capacity" : str(district.batteries[battery].maxcapacity),
+        "houses" : listofhouses
+    }
+
+    data['output'].append(output_battery)
+
+with open('data.txt', 'w') as outfile:
+    json.dump(data, outfile, indent = 4)

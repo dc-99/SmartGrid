@@ -1,0 +1,170 @@
+{
+    "output": [
+        {
+            "district": "nr district",
+            "costs": "13474"
+        },
+        {
+            "location": "(38, 12)",
+            "capacity": "1000.0",
+            "houses": [
+                {
+                    "location": "(34, 47)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                },
+                {
+                    "location": "(49, 44)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                },
+                {
+                    "location": "(22, 46)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                },
+                {
+                    "location": "(17, 11)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                },
+                {
+                    "location": "(19, 4)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                },
+                {
+                    "location": "(34, 47)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                },
+                {
+                    "location": "(49, 44)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                },
+                {
+                    "location": "(22, 46)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                },
+                {
+                    "location": "(17, 11)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                },
+                {
+                    "location": "(19, 4)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                },
+                {
+                    "location": "(24, 22)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                },
+                {
+                    "location": "(19, 38)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                },
+                {
+                    "location": "(8, 6)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                },
+                {
+                    "location": "(9, 37)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                },
+                {
+                    "location": "(16, 38)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                }
+            ]
+        },
+        {
+            "location": "(43, 13)",
+            "capacity": "1000.0",
+            "houses": [
+                {
+                    "location": "(34, 47)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                },
+                {
+                    "location": "(49, 44)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                },
+                {
+                    "location": "(22, 46)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                },
+                {
+                    "location": "(17, 11)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                },
+                {
+                    "location": "(19, 4)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                },
+                {
+                    "location": "(34, 47)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                },
+                {
+                    "location": "(49, 44)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                },
+                {
+                    "location": "(22, 46)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                },
+                {
+                    "location": "(17, 11)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                },
+                {
+                    "location": "(19, 4)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                },
+                {
+                    "location": "(24, 22)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                },
+                {
+                    "location": "(19, 38)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                },
+                {
+                    "location": "(8, 6)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                },
+                {
+                    "location": "(9, 37)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                },
+                {
+                    "location": "(16, 38)",
+                    "output": "200.0",
+                    "cables": "list of cable coordinates"
+                }
+            ]
+        }
+    ]
+}
