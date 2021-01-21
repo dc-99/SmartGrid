@@ -49,27 +49,27 @@ class District():
                 counter += 1
 
     # Verplaatsen naar mapje visualisation?
-    def visualise(self):
-        """
-        Visualises all batteries and houses with connections in a plot
-        """
-        fig=plt.figure()
+    # def visualise(self):
+    #     """
+    #     Visualises all batteries and houses with connections in a plot
+    #     """
+    #     fig=plt.figure()
 
-        for house in self.houses:
-            plt.scatter(self.houses[house].x, self.houses[house].y, color='r')
+    #     for house in self.houses:
+    #         plt.scatter(self.houses[house].x, self.houses[house].y, color='r')
         
-        for battery in self.batteries:
-            plt.scatter(self.batteries[battery].x, self.batteries[battery].y, color='b')
+    #     for battery in self.batteries:
+    #         plt.scatter(self.batteries[battery].x, self.batteries[battery].y, color='b')
 
-        # Loops trough all connections and draws lines between all given points
-        for connection in self.connections:
-            xlist = [self.houses[connection].x, self.batteries[self.connections[connection].battery_id].x, self.batteries[self.connections[connection].battery_id].x]
-            ylist = [self.houses[connection].y, self.houses[connection].y, self.batteries[self.connections[connection].battery_id].y]
-            plt.plot(xlist, ylist)
-        plt.xlabel("x-coordinates")
-        plt.ylabel("y-coordinates")
-        plt.title("Houses (red) and batteries (blue) in district 1 randomly connected")
-        plt.show()
+    #     # Loops trough all connections and draws lines between all given points
+    #     for connection in self.connections:
+    #         xlist = [self.houses[connection].x, self.batteries[self.connections[connection].battery_id].x, self.batteries[self.connections[connection].battery_id].x]
+    #         ylist = [self.houses[connection].y, self.houses[connection].y, self.batteries[self.connections[connection].battery_id].y]
+    #         plt.plot(xlist, ylist)
+    #     plt.xlabel("x-coordinates")
+    #     plt.ylabel("y-coordinates")
+    #     plt.title("Houses (red) and batteries (blue) in district 1 randomly connected")
+    #     plt.show()
 
 
 

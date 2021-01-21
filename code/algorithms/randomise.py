@@ -28,7 +28,7 @@ def random_assignment(district, maxcount=50):
                 battery_id = random_battery.id
                 district.connections[house] = battery_id
     return district      
-    # district.visualise()
+    
 
 def random_assignment_repeat(district):
     while True:

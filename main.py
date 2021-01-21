@@ -1,4 +1,5 @@
 from code.algorithms import randomise, hillclimber
+from code.visualisation import visualise
 import sys, os
 
 currDir = os.path.dirname(os.path.realpath(__file__))
@@ -33,3 +34,8 @@ bestlength = hillclimber.swapbatteries(district)
 totalcost = hillclimber.calculate_cost(district, bestlength)
 # district.visualise()
 print(bestlength, totalcost)
+
+# --------------------------- Visualisation / output -----------------------------------
+
+visualisation.visualise(district)
+
