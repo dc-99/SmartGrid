@@ -9,6 +9,9 @@ def randomSolution(district):
 
 
 def connectionLength(district):
+    """
+    Calculates total lenght of all connections between houses and batteries
+    """
     connectionlength = 0
     for house in district.connections:
         battery_id = district.connections[house]
@@ -19,6 +22,9 @@ def connectionLength(district):
 
 
 def swapbatteries(district):
+    """
+    Swaps the batteries of two neighbouring houses if this results in a shorter connection length
+    """
     currentstate = copy.deepcopy(district)
     bestlength = connectionLength(district)
     for i in range(len(district.connections)):
@@ -40,6 +46,9 @@ def swapbatteries(district):
 
     
 def calculate_cost(district, bestlength):
+    """
+    Calculates total costs of batteries and cables
+    """
     battery_cost = (len(district.batteries) * 5000)
     connection_cost = int(bestlength) * 9
     total_cost = battery_cost + connection_cost

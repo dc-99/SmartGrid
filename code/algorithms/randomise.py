@@ -12,9 +12,10 @@ import random
 from random import choice
  
 def random_assignment(district, maxcount=50):
+    """
+    Connects every house to a random battery with straight connections from house x to battery x and from house y to battery y
+    """
     district.connections = {}
-    x = 0
-    y = 0
     for battery in district.batteries:
         district.batteries[battery].currentcapacity = 0.0
 
@@ -56,11 +57,14 @@ def random_assignment(district, maxcount=50):
             cables.append(str(coordinates))
     
         district.houses[house].cables = cables
-
+        
     return district      
 
 
 def random_assignment_repeat(district):
+    """
+    Re-runs random_assignment() function until all houses are connected 
+    """
     while True:
         random_assignment(district)
         if len(district.connections) == len(district.houses):
