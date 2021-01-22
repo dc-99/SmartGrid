@@ -52,12 +52,29 @@ def calculate_cost(district, bestlength):
     battery_cost = (len(district.batteries) * 5000)
 
     # Check cable coordinates for duplicates and remove these 
-    allcables = []
-    for house in district.houses:
-        for coordinate in district.houses[house].cables:
-            allcables.append(coordinate)
-    unique_cables = list(set(allcables))
+    # allcables = []
+    # for house in district.houses:
+    #     for coordinate in district.houses[house].cables:
+    #         allcables.append(coordinate)
+    # unique_cables = list(set(allcables))
 
-    connection_cost = len(unique_cables) * 9
+    # Creates a list of houses which are connected to the same battery
+    all_unique_cables = []
+    for battery in district.batteries:
+        listofhouses = []
+        listofbatteries = district.connections.items()
+        for item in listofbatteries:
+            if item[1] == battery:
+                listofhouses.append(item[0])
+        
+        allcables = []
+        for house in listofhouses:
+            for coordinate in district.houses[house].cables:
+                allcables.append(coordinate)
+        unique_cables = list(set(allcables))
+        for coordinate in unique_cables:
+            all_unique_cables.append(unique_cables)
+
+    connection_cost = len(all_unique_cables) * 9
     total_cost = battery_cost + connection_cost
     return total_cost
