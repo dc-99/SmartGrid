@@ -50,6 +50,14 @@ def calculate_cost(district, bestlength):
     Calculates total costs of batteries and cables
     """
     battery_cost = (len(district.batteries) * 5000)
-    connection_cost = int(bestlength) * 9
+
+    # Check cable coordinates for duplicates and remove these 
+    allcables = []
+    for house in district.houses:
+        for coordinate in district.houses[house].cables:
+            allcables.append(coordinate)
+    unique_cables = list(set(allcables))
+
+    connection_cost = len(unique_cables) * 9
     total_cost = battery_cost + connection_cost
     return total_cost

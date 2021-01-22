@@ -25,6 +25,7 @@ def random_assignment(district, maxcount=50):
         x_coordinates = []
         y_coordinates = []
         cables = []
+
         while connected == False and counter < maxcount:
             counter += 1
             random_battery = choice(district.batteries)
@@ -57,7 +58,7 @@ def random_assignment(district, maxcount=50):
             cables.append(str(coordinates))
     
         district.houses[house].cables = cables
-        
+    combine_connections(district)
     return district      
 
 
@@ -69,6 +70,38 @@ def random_assignment_repeat(district):
         random_assignment(district)
         if len(district.connections) == len(district.houses):
             return district
+
+
+def combine_connections(district):
+    # Creates a list of houses which are connected to the same battery
+    for battery in district.batteries:
+        listofhouses = []
+        listofbatteries = district.connections.items()
+        for item in listofbatteries:
+            if item[1] == battery:
+                listofhouses.append(item[0])
+        
+        # Loops through list of houses to compare the coordinates of the cables
+        counter = len(listofhouses) - 1
+        for i in range(len(listofhouses)-1):
+            j = 0
+            for j in range(counter):
+                j += i + 1
+            counter -= 1
+            
+            cables_i = district.houses[i].cables
+            cables_j = district.houses[j].cables
+
+
+                
+
+
+
+        
+    
+
+
+    
 
     
 
