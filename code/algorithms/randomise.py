@@ -32,21 +32,20 @@ def random_assignment(district, maxcount=50):
             if (random_battery.currentcapacity + district.houses[house].maxoutput) <= random_battery.maxcapacity:
                 connected = True
                 random_battery.currentcapacity = random_battery.currentcapacity + district.houses[house].maxoutput
-                battery_id = random_battery.id
-                district.connections[house] = battery_id
+                district.connections[house] = random_battery_id
 
                 if district.houses[house].x < random_battery.x:
-                    for x_coordinate in range(district.houses[house].x + 1, random_battery.x):
+                    for x_coordinate in range(district.houses[house].x, random_battery.x):
                         x_coordinates.append(x_coordinate)
                 else:
-                    for x_coordinate in range(random_battery.x + 1, district.houses[house].x):
+                    for x_coordinate in range(random_battery.x, district.houses[house].x):
                         x_coordinates.append(x_coordinate)
 
                 if district.houses[house].y < random_battery.y:
-                    for y_coordinate in range(district.houses[house].y + 1, random_battery.y):
+                    for y_coordinate in range(district.houses[house].y, random_battery.y):
                         y_coordinates.append(y_coordinate)
                 else: 
-                    for y_coordinate in range(random_battery.y + 1, district.houses[house].y):
+                    for y_coordinate in range(random_battery.y, district.houses[house].y):
                         y_coordinates.append(y_coordinate)
                 
         for x in range(len(x_coordinates)):

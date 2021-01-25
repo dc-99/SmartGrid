@@ -69,6 +69,8 @@ def calculate_cost(district, bestlength):
         
         allcables = []
         for house in listofhouses:
+            print(house)
+            print(listofhouses)
             for coordinate in district.houses[house].cables:
                 allcables.append(coordinate)
         unique_cables = list(set(allcables))

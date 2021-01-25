@@ -25,7 +25,9 @@ if __name__ == "__main__":
 
 # --------------------------- Random reassignment --------------------------
 
-# randomise.random_assignment(district)
+randomise.random_assignment_repeat(district)
+# print(district.houses[1].cables, district.houses[1].x, district.houses[1].y)
+# print(district.batteries[district.connections[1]].x, district.batteries[district.connections[1]].y)
 
 # --------------------------- Hillclimber --------------------------
 
@@ -36,14 +38,14 @@ if __name__ == "__main__":
 # print(bestlength, totalcost)
 
 # --------------------------- Simulated annealing --------------------------
-district = simulatedannealing.randomstate(district)
-solution = simulatedannealing.simulated_annealing(district)
-simulatedannealing.optimalconnections(solution)
+# district = simulatedannealing.randomstate(district)
+# solution = simulatedannealing.simulated_annealing(district)
+# simulatedannealing.optimalconnections(solution)
 
 # --------------------------- Visualisation / output -----------------------------------
 
 
-# visualise.visualise(district)
+visualise.visualise(district)
 
 # data = {}
 # data['output'] = []
