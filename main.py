@@ -1,4 +1,4 @@
-from code.algorithms import randomise, hillclimber
+from code.algorithms import randomise, hillclimber, simulatedannealing
 from code.visualisation import visualise
 import sys, os
 
@@ -29,47 +29,53 @@ if __name__ == "__main__":
 
 # --------------------------- Hillclimber --------------------------
 
-district = hillclimber.randomSolution(district)
-backupsolution = copy.deepcopy(district)
-bestlength = hillclimber.swapbatteries(district)
-totalcost = hillclimber.calculate_cost(district, bestlength)
-print(bestlength, totalcost)
+# district = hillclimber.randomSolution(district)
+# backupsolution = copy.deepcopy(district)
+# bestlength = hillclimber.swapbatteries(district)
+# totalcost = hillclimber.calculate_cost(district, bestlength)
+# print(bestlength, totalcost)
+
+# --------------------------- Simulated annealing --------------------------
+district = simulatedannealing.randomstate(district)
+solution = simulatedannealing.simulated_annealing(district)
+simulatedannealing.optimalconnections(solution)
 
 # --------------------------- Visualisation / output -----------------------------------
 
-visualise.visualise(district)
 
-data = {}
-data['output'] = []
+# visualise.visualise(district)
 
-output_district = {"district" : str(sys.argv[1]), "costs" : str(totalcost)}
-data['output'].append(output_district)
+# data = {}
+# data['output'] = []
 
-houses = []
-output_houses = {}
-listofhouses = []
-for battery in district.batteries:
-    for house in district.connections:
-        if district.connections[house] == battery:
-            houses.append(house)
+# output_district = {"district" : str(sys.argv[1]), "costs" : str(totalcost)}
+# data['output'].append(output_district)
 
-    for house in houses:
-        location = district.houses[house].x, district.houses[house].y
-        output_houses = {
-            "location" : str(location),
-            "output" : str(district.houses[house].maxoutput),
-            "cables" : district.houses[house].cables
-        }
-        listofhouses.append(output_houses)
+# houses = []
+# output_houses = {}
+# listofhouses = []
+# for battery in district.batteries:
+#     for house in district.connections:
+#         if district.connections[house] == battery:
+#             houses.append(house)
 
-    location = district.batteries[battery].x, district.batteries[battery].y
-    output_battery = {
-        "location" : str(location), 
-        "capacity" : str(district.batteries[battery].maxcapacity),
-        "houses" : listofhouses
-    }
+#     for house in houses:
+#         location = district.houses[house].x, district.houses[house].y
+#         output_houses = {
+#             "location" : str(location),
+#             "output" : str(district.houses[house].maxoutput),
+#             "cables" : district.houses[house].cables
+#         }
+#         listofhouses.append(output_houses)
 
-    data['output'].append(output_battery)
+#     location = district.batteries[battery].x, district.batteries[battery].y
+#     output_battery = {
+#         "location" : str(location), 
+#         "capacity" : str(district.batteries[battery].maxcapacity),
+#         "houses" : listofhouses
+#     }
 
-with open('data.txt', 'w') as outfile:
-    json.dump(data, outfile, indent = 4)
+#     data['output'].append(output_battery)
+
+# with open('data.txt', 'w') as outfile:
+#     json.dump(data, outfile, indent = 4)
