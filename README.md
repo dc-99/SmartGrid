@@ -4,7 +4,7 @@ SmartGrid assignment by Lisa, Tosca and Demi.
 ## Uitleg van de case
 Veel huizen hebben tegenwoordig zonnepanelen, windmolens of andere installaties om zelf energie mee te produceren. Vaak wordt er meer dan voor eigen consumptie nodig is geproduceerd. Het overschot zou kunnen worden terugverkocht aan de leverancier, maar de infrastructuur (het grid) is daar veelal niet op berekend. Om de pieken in consumptie en productie te kunnen managen moeten er batterijen geplaatst worden. 
 
-De huizen hebben zonnepanelen met een maximale output, de batterijen hebben een maximale capaciteit. De maximumcapaciteit van de huizen mag die van de batterijen uiteraard niet overschrijden. De kosten zijn als volgt: de batterijen kosten 5000 per stuk. De kabels kosten 9 per grid-segment. Bij deze case is het dus de bedoeling om te kijken hoe batterijen en huizen zo efficient mogelijk met elkaar verbonden kunnen worden op het grid. Hoe efficienter de verbinding, hoe minder kabel er gebruikt hoeft te worden, hoe lager de totale kosten.
+Bij deze case zijn er drie wijken, ofwel 'grids', en op deze grids bevinden zich huizen en batterijen. De huizen hebben zonnepanelen met een maximale output, de batterijen hebben een maximale capaciteit. De maximumcapaciteit van de huizen mag die van de batterijen uiteraard niet overschrijden. De kosten zijn als volgt: de batterijen kosten 5000 per stuk. De kabels kosten 9 per grid-segment. Bij deze case is het dus de bedoeling om te kijken hoe batterijen en huizen zo efficient mogelijk met elkaar verbonden kunnen worden op het grid. Hoe efficienter de verbinding, hoe minder kabel er gebruikt hoeft te worden, hoe lager de totale kosten.
 
 Er zijn een aantal vereisten waaraan het uiteindelijke SmartGrid moet voldoen, namelijk: 
 - Batterijen mogen niet aan elkaar verbondenden zijn. Ook niet via een huis.
@@ -14,7 +14,14 @@ Er zijn een aantal vereisten waaraan het uiteindelijke SmartGrid moet voldoen, n
 - Huizen mogen via eenzelfde kabel aan een batterij verbonden zijn. Ze mogen dus een kabel delen.
 
 ## De algoritmen
-De aanpak van de verschillende algoritmen is duidelijk beschreven in de README.
+#### Random algoritme (baseline)
+
+
+#### Hillclimber algoritme 
+
+
+#### Stimulated annealing
+
 
 ## Gebruik 
 hoe de resultaten te reproduceren zijn, via een interface (command line), argumenten die meegegeven kunnen worden voor de verschillende functionaliteiten/algoritmen, of bijvoorbeeld een duidelijke uitleg welke file te runnen om welk resultaat te krijgen
