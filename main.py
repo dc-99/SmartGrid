@@ -25,7 +25,7 @@ if __name__ == "__main__":
 
 # --------------------------- Random reassignment --------------------------
 
-randomise.random_assignment_repeat(district)
+# randomise.random_assignment_repeat(district)
 # print(district.houses[1].cables, district.houses[1].x, district.houses[1].y)
 # print(district.batteries[district.connections[1]].x, district.batteries[district.connections[1]].y)
 
@@ -38,20 +38,21 @@ randomise.random_assignment_repeat(district)
 # print(bestlength, totalcost)
 
 # --------------------------- Simulated annealing --------------------------
-# district = simulatedannealing.randomstate(district)
-# solution = simulatedannealing.simulated_annealing(district)
-# simulatedannealing.optimalconnections(solution)
+
+district = simulatedannealing.randomstate(district)
+solution = simulatedannealing.simulated_annealing(district)
+# district = simulatedannealing.optimalconnections(solution)
 
 # --------------------------- Visualisation / output -----------------------------------
 
 
-visualise.visualise(district)
+# visualise.visualise(district)
 
-# data = {}
-# data['output'] = []
+# output = {}
+# output['output'] = []
 
 # output_district = {"district" : str(sys.argv[1]), "costs" : str(totalcost)}
-# data['output'].append(output_district)
+# output['output'].append(output_district)
 
 # houses = []
 # output_houses = {}
@@ -77,7 +78,7 @@ visualise.visualise(district)
 #         "houses" : listofhouses
 #     }
 
-#     data['output'].append(output_battery)
+#     output['output'].append(output_battery)
 
-# with open('data.txt', 'w') as outfile:
-#     json.dump(data, outfile, indent = 4)
+# with open('output.json', 'w') as outfile:
+#     json.dump(output, outfile, indent = 4)

@@ -3,6 +3,7 @@ from .randomise import random_assignment, random_assignment_repeat
 from .hillclimber import connectionLength, calculate_cost
 import random 
 import copy
+import math
 
 def randomstate(district):
     return random_assignment_repeat(district)
@@ -12,28 +13,50 @@ def simulated_annealing(district):
     """ 
     Peforms simulated annealing to find a solution
     """
+
+    initial_temp = 50.0
+    final_temp = 1.0
+    alpha = 0.01
+
+    current_temp = initial_temp
+
+    # Initialize current state with district
     currentstate = copy.deepcopy(district)
     solution = currentstate
     length = connectionLength(currentstate)
     optimalcost = calculate_cost(currentstate, length)
 
-    # while loop
-    for house in currentstate.connections:
-        randomhouse = random.choice(currentstate.houses).id
-            
-        # Swap batteries between house and random house
-        temp = currentstate.connections[house]
-        currentstate.connections[house] = currentstate.connections[randomhouse] 
-        currentstate.connections[randomhouse] = temp
+    while current_temp > final_temp:
+        for house in currentstate.connections:
+            randomhouse = random.choice(currentstate.houses).id
+                
+            # Swap batteries between house and random house
+            temp = currentstate.connections[house]
+            currentstate.connections[house] = currentstate.connections[randomhouse] 
+            currentstate.connections[randomhouse] = temp
 
-        length = connectionLength(currentstate)
-        cost = calculate_cost(currentstate, length)
-        
-        if cost < optimalcost:
-            optimalcost = cost
-            solution = currentstate
-        
-        return solution
+            length = connectionLength(currentstate)
+            cost = calculate_cost(currentstate, length)
+
+            if cost < optimalcost:
+                optimalcost = cost
+                solution = currentstate
+            else:
+                # Calculate the probability of accepting this new currentstate
+                delta = optimalcost - cost
+                probability = math.exp(-delta / current_temp)
+
+                # Pull a random number between 0 and 1 and see if we accept
+                if random.random() < probability:
+                    optimalcost = cost
+                    solution = currentstate
+            print(optimalcost)
+        # Lower the temperature
+        current_temp -= alpha
+        print(current_temp)
+    # length = connectionLength(solution)
+    # print("length:", length, "cost:", calculate_cost(solution, length))
+    return solution
 
 def optimalconnections(solution):
     # Creates a list of houses which are connected to the same battery
@@ -47,17 +70,15 @@ def optimalconnections(solution):
         # Loops through list of houses 
         counter = len(listofhouses) - 1
         for i in range(len(listofhouses)-1):
-            # print("Cables voor swap van huis i:",solution.houses[i].cables)
             j = 0
             for j in range(counter):
                 j += i + 1
-                # print("Cables voor swap van huis j:",solution.houses[j].cables)
-                # print(solution.connections[i], solution.connections[j])
 
-                xcoordinate_i = listofhouses[i].x
-                ycoordinate_i = listofhouses[i].y
-                xcoordinate_j = listofhouses[j].x
-                ycoordinate_j = listofhouses[j].y
+
+                xcoordinate_i = solution.houses[listofhouses[i]].x
+                ycoordinate_i = solution.houses[listofhouses[i]].y
+                xcoordinate_j = solution.houses[listofhouses[j]].x
+                ycoordinate_j = solution.houses[listofhouses[j]].y
     
                 xcoordinate_battery = solution.batteries[battery].x
                 ycoordinate_battery = solution.batteries[battery].y
@@ -145,9 +166,6 @@ def optimalconnections(solution):
                             newcables.append(str(coordinates))
 
                         # sets new cables to cables 
-                        solutionlistofhouses[i].cables = newcables 
-                    
-                print("Cables NA swap van huis i:",solution.houses[listofhouses[i]].cables)
-                print("Cables NA swap van huis j:",solution.houses[listofhouses[j]].cables)
+                        solution.listofhouses[i].cables = newcables 
             counter -= 1
-
+    return solution
