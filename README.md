@@ -36,8 +36,8 @@ hoe de resultaten te reproduceren zijn, via een interface (command line), argume
 ## Structuur
 De hierop volgende lijst beschrijft de belangrijkste mappen en files in het project, en waar je ze kunt vinden:
 
-/code: bevat alle code van dit project
-/code/algorithms: bevat de code voor de verschillende algoritmes
-/code/classes: bevat de benodigde classes voor deze case
-/code/visualisation: bevat de code voor de visualisatie, in ons geval een plot 
-/data: bevat de verschillende databestanden die nodig zijn om de grid te vullen en te visualiseren
+- /code: bevat alle code van dit project
+  - /code/algorithms: bevat de code voor de verschillende algoritmes
+  - /code/classes: bevat de benodigde classes voor deze case
+  - /code/visualisation: bevat de code voor de visualisatie, in ons geval een plot 
+- /data: bevat de verschillende databestanden die nodig zijn om de grid te vullen en te visualiseren
