@@ -34,9 +34,11 @@ Wij hebben de volgende waardes gebruikt voor de temperatuur en alpha:
 ## Gebruik 
 Deze code kan gerund worden door aanroepen van:
   
-  `python main.py district_x`
+  `python main.py [district_x] [algorithm.py]`
   
-waarbij x het getal 1, 2 of 3 kan zijn. Deze getallen duiden de betreffende wijk aan. Wanneer district_1 als argument wordt meegegeven, genereert het algoritme dus een oplossing voor wijk 1.
+- Bij district_x kan het getal 1, 2 of 3 kan zijn. Deze getallen duiden de betreffende wijk aan. Wanneer district_1 als argument wordt meegegeven, genereert het algoritme dus een oplossing voor wijk 1.
+
+- Bij algorithm.py kan er gekozen worden uit randomise.py, hillclimber.py en simulatedannealing.py.
 
 hoe de resultaten te reproduceren zijn, via een interface (command line), argumenten die meegegeven kunnen worden voor de verschillende functionaliteiten/algoritmen, of bijvoorbeeld een duidelijke uitleg welke file te runnen om welk resultaat te krijgen
 
