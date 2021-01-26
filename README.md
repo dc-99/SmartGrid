@@ -13,7 +13,7 @@ Er zijn een aantal vereisten waaraan het uiteindelijke SmartGrid moet voldoen, n
 - Er mogen meerdere kabels over dezelfde gridsegmenten lopen. Het blijven echter wel unieke kabels en leveren geen kostenvermindering op.
 - Huizen mogen via eenzelfde kabel aan een batterij verbonden zijn. Ze mogen dus een kabel delen.
 
-## De algoritmen
+## De algoritmes
 #### Random algoritme (baseline)
 In dit geval worden de resultaten geproduceerd door middel van een algoritme die random verbinding legt tussen huizen en batterijen. Door te itereren over de huizen van het district (wijk) wordt er per huis een verbinding gelegd met een random batterij uit de lijst. In deze situatie is er geen rekening gehouden met de maximale capaciteit van de batterij en de positie van de verbindingen.
 
@@ -24,7 +24,12 @@ De resultaten worden in dit geval tot stand gebracht met behulp van het Hillclim
 Voor het tweede algoritme hebben wij gekozen voor een simulated annealing algoritme. 
 Hierbij gebruiken wij eveneens als het Hillclimber algoritme, het baseline random algoritme om een beginsituatie van de wijk te creëren. Deze wordt vervolgens gemanipuleerd middels het simulated annealing algoritme. 
 
-Bij het simulated annealing algoritme wordt er, in tegenstelling tot het hillclimber algoritme, rekening gehouden met eventuele lokale maxima. Simulated annealing kiest soms een ‘slechtere’ oplossing om er voor te zorgen dat de oplossing niet in een lokale maximum zit.  Voor het vaststellen en kiezen van een ‘slechtere keuze’ wordt er in dit algoritme gebruik gemaakt van een initiële temperatuur(T0),  uiteindelijke temperatuur(T) en een alpha waarde. Vervolgens wordt de huidige temperatuur gelijk gesteld aan de initiële temperatuur, en loopt het algoritme zolang de huidige temperatuur nog groter is dan de gewenste uiteindelijke temperatuur.
+Bij het simulated annealing algoritme wordt er, in tegenstelling tot het hillclimber algoritme, rekening gehouden met eventuele lokale minima en maxima. Met simulated annealing kunnen er dus globale minima en maxima gevonden worden. Dit houdt in dat het algoritme soms voor een ‘slechtere’ oplossing kiest om er voor te zorgen dat de oplossing niet in een lokale maximum of minimum vastzit.  Voor het vaststellen en kiezen van een ‘slechtere keuze’ wordt er in dit algoritme gebruik gemaakt van een initiële temperatuur(T0),  uiteindelijke temperatuur(T) en een alpha waarde. Vervolgens wordt de huidige temperatuur gelijk gesteld aan de initiële temperatuur, en loopt het algoritme zolang de huidige temperatuur nog groter is dan de gewenste uiteindelijke temperatuur.
+
+Wij hebben de volgende waardes gebruikt voor de temperatuur en alpha: 
+- initial temp = 1000.0
+- final temp = 1.0
+- alpha = 0.01.
 
 ## Gebruik 
 Deze code kan gerund worden door aanroepen van:
