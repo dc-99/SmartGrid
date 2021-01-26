@@ -2,8 +2,11 @@
 SmartGrid assignment by Lisa, Tosca and Demi. 
 
 ## Uitleg van de case
+
+#### Achtergond
 Veel huizen hebben tegenwoordig zonnepanelen, windmolens of andere installaties om zelf energie mee te produceren. Vaak wordt er meer dan voor eigen consumptie nodig is geproduceerd. Het overschot zou kunnen worden terugverkocht aan de leverancier, maar de infrastructuur (het grid) is daar veelal niet op berekend. Om de pieken in consumptie en productie te kunnen managen moeten er batterijen geplaatst worden. 
 
+#### Opbouw
 Bij deze case zijn er drie wijken/districten, ofwel 'grids', en op deze grids bevinden zich huizen en batterijen. De huizen hebben zonnepanelen met een maximale output, de batterijen hebben een maximale capaciteit. De maximumcapaciteit van de huizen mag die van de batterijen uiteraard niet overschrijden. 
 
 De kosten zijn als volgt: de batterijen kosten 5000 per stuk. De kabels kosten 9 per grid-segment. 
