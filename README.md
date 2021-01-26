@@ -13,6 +13,8 @@ Er zijn een aantal vereisten waaraan het uiteindelijke SmartGrid moet voldoen, n
 - Er mogen meerdere kabels over dezelfde gridsegmenten lopen. Het blijven echter wel unieke kabels en leveren geen kostenvermindering op.
 - Huizen mogen via eenzelfde kabel aan een batterij verbonden zijn. Ze mogen dus een kabel delen.
 
+Dit laatste vereiste is erg belangrijk voor de totale kostenvermindering. In eerste instantie hadden wij een output waarin er een kabel per huis werd verbonden, maar later hebben wij geimplementeerd dat kabels ook opgesplitst kunnen worden.
+
 ## De algoritmes
 #### Random algoritme (baseline)
 In dit geval worden de resultaten geproduceerd door middel van een algoritme die random verbinding legt tussen huizen en batterijen. Door te itereren over de huizen van het district (wijk) wordt er per huis een verbinding gelegd met een random batterij uit de lijst. In deze situatie is er geen rekening gehouden met de maximale capaciteit van de batterij en de positie van de verbindingen.
