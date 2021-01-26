@@ -2,12 +2,10 @@ import csv
 from random import choice
 from house import House
 from battery import Battery
-from connections import Connections
 import matplotlib.pyplot as plt
 
 class District():
     def __init__(self, district):
-        # NIEUW:
         self.houses = {}
         self.load_houses(f"data/{district}/{district}houses.csv")
         self.batteries = {}

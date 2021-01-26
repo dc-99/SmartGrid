@@ -14,9 +14,9 @@ def simulated_annealing(district):
     Peforms simulated annealing to find a solution
     """
 
-    initial_temp = 50.0
+    initial_temp = 1000.0
     final_temp = 1.0
-    alpha = 0.01
+    alpha = 0.95
 
     current_temp = initial_temp
 
@@ -50,12 +50,8 @@ def simulated_annealing(district):
                 if random.random() < probability:
                     optimalcost = cost
                     solution = currentstate
-            print(optimalcost)
         # Lower the temperature
-        current_temp -= alpha
-        print(current_temp)
-    # length = connectionLength(solution)
-    # print("length:", length, "cost:", calculate_cost(solution, length))
+        current_temp = current_temp * alpha
     return solution
 
 def optimalconnections(solution):
@@ -64,7 +60,7 @@ def optimalconnections(solution):
         listofhouses = []
         listofbatteries = solution.connections.items()
         for item in listofbatteries:
-            if item[1] == battery:
+            if item[1] == solution.batteries[battery]:
                 listofhouses.append(item[0])
 
         # Loops through list of houses 
@@ -73,8 +69,6 @@ def optimalconnections(solution):
             j = 0
             for j in range(counter):
                 j += i + 1
-
-
                 xcoordinate_i = solution.houses[listofhouses[i]].x
                 ycoordinate_i = solution.houses[listofhouses[i]].y
                 xcoordinate_j = solution.houses[listofhouses[j]].x
@@ -89,7 +83,6 @@ def optimalconnections(solution):
                 
                 # Checks if two houses have the same x coordinates
                 if xcoordinate_i == xcoordinate_j:
-                    print("test x is hetzelfde")
                     diffx_i = abs(xcoordinate_battery - xcoordinate_i)
                     diffx_j = abs(xcoordinate_battery - xcoordinate_j)
 
@@ -97,39 +90,39 @@ def optimalconnections(solution):
                     if diffx_i < diffx_j:
 
                         # links house that has is futher to battery to house that is near the battery 
-                        if listofhouses[i].y < listofhouses[j].y:
-                            for y_coordinate in range(listofhouses[i].y + 1, listofhouses[j].y):
+                        if ycoordinate_i < ycoordinate_j:
+                            for y_coordinate in range(ycoordinate_i + 1, ycoordinate_j):
                                 y_coordinates.append(y_coordinate)
                         else: 
-                            for y_coordinate in range(listofhouses[j].y + 1, listofhouses[i].y):
+                            for y_coordinate in range(ycoordinate_j + 1, ycoordinate_i):
                                 y_coordinates.append(y_coordinate)
                         
                         # convert x and y coordinates to positions 
                         for y in range(len(y_coordinates)):
-                            coordinates = listofhouses[i].x, y_coordinates[y]
+                            coordinates = xcoordinate_i, y_coordinates[y]
                             newcables.append(str(coordinates))
 
                         # sets new cables to cables 
                         solution.houses[listofhouses[j]].cables = newcables
+                        solution.connections[listofhouses[j]] = listofhouses[i]
                     else:
-                        
-                        if listofhouses[i].y < listofhouses[j].y:
-                            for  y_coordinate in range(listofhouses[i].y + 1, listofhouses[j].y):
+                        if ycoordinate_i < ycoordinate_j:
+                            for  y_coordinate in range(ycoordinate_i + 1, ycoordinate_j):
                                 y_coordinates.append(y_coordinate)
                         else:
-                            for y_coordinate in range(listofhouses[j].y + 1, listofhouses[i].y):
+                            for y_coordinate in range(ycoordinate_j + 1, ycoordinate_i):
                                 y_coordinates.append(y_coordinate)
 
                         # convert x and y coordinates to positions 
                         for y in range(len(y_coordinates)):
-                            coordinates = listofhouses[j].x, y_coordinates[y]
+                            coordinates = xcoordinate_j, y_coordinates[y]
                             newcables.append(str(coordinates))
 
                         # sets new cables to cables 
                         solution.houses[listofhouses[i]].cables = newcables    
+                        solution.connections[listofhouses[i]] = listofhouses[j]
 
                 if ycoordinate_i == ycoordinate_j:
-                    print("test y is hetzelfde")
                     diffy_i = abs(ycoordinate_battery - ycoordinate_i)
                     diffy_j = abs(ycoordinate_battery - ycoordinate_j)
 
@@ -137,35 +130,37 @@ def optimalconnections(solution):
                     if diffy_i < diffy_j:
 
                         # links house that has is futher to battery to house that is near the battery 
-                        if listofhouses[i].x < listofhouses[j].x:
-                            for x_coordinate in range(listofhouses[i].x + 1, listofhouses[j].x):
+                        if xcoordinate_i < xcoordinate_j:
+                            for x_coordinate in range(xcoordinate_i + 1, xcoordinate_j):
                                 x_coordinates.append(x_coordinate)
                         else: 
-                            for x_coordinate in range(listofhouses[j].x + 1, listofhouses[i].x):
+                            for x_coordinate in range(xcoordinate_j + 1, xcoordinate_i):
                                 x_coordinates.append(x_coordinate)
                         
                         # convert x and y coordinates to positions 
                         for x in range(len(x_coordinates)):
-                            coordinates = x_coordinates[x], listofhouses[i].y
+                            coordinates = x_coordinates[x], ycoordinate_i
                             newcables.append(str(coordinates))
 
                         # sets new cables to cables 
                         solution.houses[listofhouses[j]].cables = newcables
+                        solution.connections[listofhouses[j]] = listofhouses[i]
                     else:
                         
-                        if listofhouses[i].x < listofhouses[j].x:
-                            for x_coordinate in range(listofhouses[i].x + 1, listofhouses[j].x):
+                        if xcoordinate_i < xcoordinate_j:
+                            for x_coordinate in range(xcoordinate_i + 1, xcoordinate_j):
                                 x_coordinates.append(x_coordinate)
                         else:
-                            for x_coordinate in range(listofhouses[j].x + 1, listofhouses[i].x):
+                            for x_coordinate in range(xcoordinate_j + 1, xcoordinate_i):
                                 x_coordinates.append(x_coordinate)
 
                         # convert x and y coordinates to positions 
                         for x in range(len(x_coordinates)):
-                            coordinates = x_coordinates[x], listofhouses[i].y
+                            coordinates = x_coordinates[x], ycoordinate_i
                             newcables.append(str(coordinates))
 
                         # sets new cables to cables 
-                        solution.listofhouses[i].cables = newcables 
+                        solution.houses[listofhouses[i]].cables = newcables
+                        solution.connections[listofhouses[i]] = listofhouses[j] 
             counter -= 1
     return solution

@@ -6,7 +6,6 @@ if rootDir not in sys.path:
     sys.path.append(rootDir)
 
 from district import District
-from connections import Connections
 import numpy
 import random
 from random import choice
@@ -32,7 +31,7 @@ def random_assignment(district, maxcount=50):
             if (random_battery.currentcapacity + district.houses[house].maxoutput) <= random_battery.maxcapacity:
                 connected = True
                 random_battery.currentcapacity = random_battery.currentcapacity + district.houses[house].maxoutput
-                district.connections[house] = random_battery.id
+                district.connections[house] = random_battery
 
                 if district.houses[house].x < random_battery.x:
                     for x_coordinate in range(district.houses[house].x, random_battery.x):
@@ -70,32 +69,6 @@ def random_assignment_repeat(district):
             return district
 
 
-# def combine_connections(district):
-#     # Creates a list of houses which are connected to the same battery
-#     for battery in district.batteries:
-#         listofhouses = []
-#         listofbatteries = district.connections.items()
-#         for item in listofbatteries:
-#             if item[1] == battery:
-#                 listofhouses.append(item[0])
-        
-#         # # Loops through list of houses to compare the coordinates of the cables
-#         # counter = len(listofhouses) - 1
-#         # for i in range(len(listofhouses)-1):
-#         #     j = 0
-#         #     for j in range(counter):
-#         #         j += i + 1
-#         #         cables_i = district.houses[i].cables
-#         #         cables_j = district.houses[j].cables
- 
-#         #     counter -= 1
-        
-#         allcables = []
-#         for house in listofhouses:
-#             for coordinate in district.houses[].cables:
-#                 allcables.append(coordinate)
-#         unique_cables = list(set(allcables))
-            
 
 
                 
