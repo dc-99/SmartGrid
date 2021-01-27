@@ -1,27 +1,28 @@
 import csv
-from random import choice
+
 from house import House
 from battery import Battery
-import matplotlib.pyplot as plt
+
 
 class District():
     def __init__(self, district):
         self.houses = {}
-        self.load_houses(f"data/{district}/{district}houses.csv")
         self.batteries = {}
-        self.load_batteries(f"data/{district}/{district}batteries.csv")
         self.connections = {}
+        self.load_houses(f"data/{district}/{district}houses.csv")
+        self.load_batteries(f"data/{district}/{district}batteries.csv")
 
 
     def load_houses(self, house_file):
-        """
-        Loads houses from csv file and saves coordinates and maxoutput in House object
+        """ 
+        Loads houses from csv file and saves coordinates and maxoutput in House object 
         """
         with open(house_file, 'r') as in_file:
             reader = csv.DictReader(in_file)
             counter = 0
             for row in reader:
-                self.houses[counter] = House(counter, int(row['x']), int(row['y']), float(row['maxoutput']), [])
+                cables = []
+                self.houses[counter] = House(counter, int(row['x']), int(row['y']), float(row['maxoutput']), cables)
                 counter += 1
 
 
@@ -32,7 +33,7 @@ class District():
         with open(battery_file, 'r') as in_file:
             reader = csv.DictReader(in_file)
 
-            # splits position variable in data to separate x and y coordinates
+            # Splits position variable in data to separate x and y coordinates
             counter = 0
             for row in reader:
                 newposition = row['positie'].split(',')

@@ -9,7 +9,6 @@ if rootDir not in sys.path:
     sys.path.append(rootDir)
 
 from district import District
-import copy
 import json
 
 
@@ -25,34 +24,43 @@ if __name__ == "__main__":
 # --------------------------- Random reassignment --------------------------
 
 if sys.argv[2] == "randomise":
-    randomise.random_assignment_repeat(district)
+    district = randomise.random_assignment_repeat(district)
+    # length = hillclimber.cable_length(district)
+    totalcost = hillclimber.calculate_cost(district)
 
-# --------------------------- Hillclimber --------------------------
+# --------------------------- Hillclimber ----------------------------------
 
 if sys.argv[2] == "hillclimber":
-    district = hillclimber.randomSolution(district)
+    district = randomise.random_assignment_repeat(district)
     currentstate = hillclimber.swapbatteries(district)
-    length = hillclimber.connectionLength(currentstate)
-    totalcost = hillclimber.calculate_cost(district, length)
+    # length = hillclimber.cable_length(currentstate)
+    totalcost = hillclimber.calculate_cost(district)
 
-# --------------------------- Simulated annealing --------------------------
+# --------------------------- Simulated annealing ---------------------------
 
 if sys.argv[2] == "simulatedannealing":
-    district = simulatedannealing.randomstate(district)
+    district = randomise.random_assignment_repeat(district)
     solution = simulatedannealing.simulated_annealing(district)
-    
     district = simulatedannealing.optimalconnections(solution)
-    length = hillclimber.connectionLength(district)
-    totalcost = hillclimber.calculate_cost(district, length)
+    # length = hillclimber.cable_length(district)
+    totalcost = hillclimber.calculate_cost(district)
 
-# --------------------------- Visualisation / output -----------------------------------
+# --------------------------- Visualisation / Output -------------------------
 
 visualise.visualise(district)
 
+# Creates json output file 
 output = {}
 output['output'] = []
 
-output_district = {"district" : str(sys.argv[1]), "costs" : str(totalcost)}
+if sys.argv[1] == "district_1"
+    number = "1"
+if sys.argv[1] == "district_2"
+    number = "2"
+if sys.argv[1] == "district_3"
+    number = "3"
+
+output_district = {"district" : number, "costs" : str(totalcost)}
 output['output'].append(output_district)
 
 houses = []

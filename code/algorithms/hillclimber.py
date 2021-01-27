@@ -1,19 +1,14 @@
-import random
 from district import District
-from .randomise import random_assignment, random_assignment_repeat
 import copy 
 
 
-def randomSolution(district):
-    return random_assignment_repeat(district)
-
-
-def connectionLength(district):
+def cable_length(district):
     """
-    Calculates total lenght of all connections between houses and batteries
+    Calculates total length of all cables between houses and batteries
     """
-    connectionlength = 0
+    cable_length = 0
     for house in district.connections:
+        # Checks if house is connected to a house or a battery and calculates length of the connection
         if isinstance(district.connections[house], int):
             house_id = district.connections[house]
             x_distance = abs(district.houses[house].x - district.houses[house_id].x)
@@ -22,8 +17,8 @@ def connectionLength(district):
             battery_id = district.connections[house].id
             x_distance = abs(district.houses[house].x - district.batteries[battery_id].x)
             y_distance = abs(district.houses[house].y - district.batteries[battery_id].y)
-        connectionlength += x_distance + y_distance
-    return connectionlength
+        cable_length += x_distance + y_distance
+    return cable_length
 
 
 def swapbatteries(district):
@@ -31,29 +26,40 @@ def swapbatteries(district):
     Swaps the batteries of two neighbouring houses if this results in a shorter connection length
     """
     currentstate = copy.deepcopy(district)
-    bestlength = connectionLength(district)
+    bestlength = cable_length(district)
     for i in range(len(district.connections)):
         for j in range(i+1, len(district.connections)):
-            currentstate.connections[i] = district.connections[j]
-            currentstate.connections[j] = district.connections[i]
+
+            # Swaps the batteries between the houses in the connections dictionary
+            temp = currentstate.connections[i]
+            currentstate.connections[i] = currentstate.connections[j]
+            currentstate.connections[j] = temp
+
+            # Swaps the cables between the houses in House objects
+            temp = currentstate.houses[i].cables
+            currentstate.houses[i].cables = currentstate.houses[j].cables
+            currentstate.houses[j].cables = temp
 
             currentcapacity = currentstate.connections[i].currentcapacity - currentstate.houses[i].maxoutput + currentstate.houses[j].maxoutput 
             maxcapacity = currentstate.connections[i].maxcapacity
 
-            if currentcapacity > maxcapacity or connectionLength(currentstate) > bestlength:
+            # Swaps batteries and cables back if swap was invalid
+            if currentcapacity > maxcapacity or cable_length(currentstate) > bestlength:
                 temp = currentstate.connections[i]
                 currentstate.connections[i] = currentstate.connections[j]
                 currentstate.connections[j] = temp
-            
-            if connectionLength(currentstate) < bestlength:
-                bestlength = connectionLength(currentstate)
+
+                temp = currentstate.houses[i].cables
+                currentstate.houses[i].cables = currentstate.houses[j].cables
+                currentstate.houses[j].cables = temp
+
+            # Sets bestlength to the current cable_length if it is shorter
+            if cable_length(currentstate) < bestlength:
+                bestlength = cable_length(currentstate)
     return currentstate
 
     
-def calculate_cost(district, bestlength):
-    # Best length wordt niet meer gebruikt, kosten worden adhv cables berekend maar 
-    # in hillclimber verander je alleen dingen in connections en niet in cables
-
+def calculate_cost(district):
     """
     Calculates total costs of batteries and cables
     """
@@ -67,18 +73,19 @@ def calculate_cost(district, bestlength):
             if item[1] == district.batteries[battery]:
                 listofhouses.append(item[0])
 
+        # Creates a list with coordinates of all cables connected to that battery
         allcables = []
         for house in listofhouses:
-
             for coordinate in district.houses[house].cables:
                 allcables.append(coordinate)
-
+        
+        # Removes duplicate coordinates from list of all cables
         unique_cables = list(set(allcables))
         for coordinate in unique_cables:
             all_unique_cables.append(unique_cables)
 
+    # Calculates total cost with battery cost and cable cost
     battery_cost = (len(district.batteries) * 5000)
-    connection_cost = (len(all_unique_cables) * 9)
-
-    total_cost = battery_cost + connection_cost
+    cable_cost = (len(all_unique_cables) * 9)
+    total_cost = battery_cost + cable_cost
     return total_cost
