@@ -60,7 +60,7 @@ if sys.argv[1] == "district_2":
 if sys.argv[1] == "district_3":
     number = "3"
 
-output_district = {"district" : number, "costs" : str(totalcost)}
+output_district = {"district" : number, "costs-shared" : str(totalcost)}
 output['output'].append(output_district)
 
 houses = []
