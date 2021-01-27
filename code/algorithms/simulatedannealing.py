@@ -1,6 +1,6 @@
 from district import District
 from .randomise import random_assignment, random_assignment_repeat
-from .hillclimber import cable_length, calculate_cost
+from .hillclimber import calculate_cost
 import random 
 import copy
 import math

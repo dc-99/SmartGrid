@@ -2,31 +2,13 @@ from district import District
 import copy 
 
 
-def cable_length(district):
-    """
-    Calculates total length of all cables between houses and batteries
-    """
-    cable_length = 0
-    for house in district.connections:
-        # Checks if house is connected to a house or a battery and calculates length of the connection
-        if isinstance(district.connections[house], int):
-            house_id = district.connections[house]
-            x_distance = abs(district.houses[house].x - district.houses[house_id].x)
-            y_distance = abs(district.houses[house].y - district.houses[house_id].y)
-        else:
-            battery_id = district.connections[house].id
-            x_distance = abs(district.houses[house].x - district.batteries[battery_id].x)
-            y_distance = abs(district.houses[house].y - district.batteries[battery_id].y)
-        cable_length += x_distance + y_distance
-    return cable_length
-
-
 def swapbatteries(district):
     """
     Swaps the batteries of two neighbouring houses if this results in a shorter connection length
     """
     currentstate = copy.deepcopy(district)
-    bestlength = cable_length(district)
+    cost = calculate_cost(currentstate)
+    optimalcost = cost
     for i in range(len(district.connections)):
         for j in range(i+1, len(district.connections)):
 
@@ -42,9 +24,10 @@ def swapbatteries(district):
 
             currentcapacity = currentstate.connections[i].currentcapacity - currentstate.houses[i].maxoutput + currentstate.houses[j].maxoutput 
             maxcapacity = currentstate.connections[i].maxcapacity
+            cost = calculate_cost(currentstate)
 
             # Swaps batteries and cables back if swap was invalid
-            if currentcapacity > maxcapacity or cable_length(currentstate) > bestlength:
+            if currentcapacity > maxcapacity or cost > optimalcost:
                 temp = currentstate.connections[i]
                 currentstate.connections[i] = currentstate.connections[j]
                 currentstate.connections[j] = temp
@@ -53,9 +36,9 @@ def swapbatteries(district):
                 currentstate.houses[i].cables = currentstate.houses[j].cables
                 currentstate.houses[j].cables = temp
 
-            # Sets bestlength to the current cable_length if it is shorter
-            if cable_length(currentstate) < bestlength:
-                bestlength = cable_length(currentstate)
+            # Sets optimalcost to the current cost if it is lower
+            if cost < optimalcost:
+                optimalcost = cost
     return currentstate
 
     

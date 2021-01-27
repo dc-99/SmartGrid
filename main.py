@@ -53,11 +53,11 @@ visualise.visualise(district)
 output = {}
 output['output'] = []
 
-if sys.argv[1] == "district_1"
+if sys.argv[1] == "district_1":
     number = "1"
-if sys.argv[1] == "district_2"
+if sys.argv[1] == "district_2":
     number = "2"
-if sys.argv[1] == "district_3"
+if sys.argv[1] == "district_3":
     number = "3"
 
 output_district = {"district" : number, "costs" : str(totalcost)}
