@@ -4,6 +4,7 @@ from .hillclimber import calculate_cost
 import random 
 import copy
 import math
+import time
 
 
 def simulated_annealing(district):
@@ -22,6 +23,7 @@ def simulated_annealing(district):
 
             # Initializes current state with district
             currentstate = random_assignment_repeat(district)
+            print("random werkt")
             solution = currentstate
             length = cable_length(currentstate)
             optimalcost = calculate_cost(currentstate)
@@ -54,6 +56,9 @@ def simulated_annealing(district):
                             solution = currentstate
                 # Decreases the temperature
                 current_temp = current_temp * alpha
+            optimaldistrict = optimalconnections(solution)
+            optimalcosts = calculate_cost(optimaldistrict)
+            print("simulated annealing", optimalcosts)
     return solution
 
 def optimalconnections(solution):
