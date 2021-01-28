@@ -10,46 +10,50 @@ def simulated_annealing(district):
     """ 
     Peforms simulated annealing to find a solution
     """
+    timeout = time.time() + 60*180 
+    while True:
+        if time.time() > timeout:
+            break
+        else:
+            initial_temp = 1000.0
+            final_temp = 1.0
+            alpha = 0.95
+            current_temp = initial_temp
 
-    initial_temp = 1000.0
-    final_temp = 1.0
-    alpha = 0.95
-    current_temp = initial_temp
-
-    # Initializes current state with district
-    currentstate = copy.deepcopy(district)
-    solution = currentstate
-    length = cable_length(currentstate)
-    optimalcost = calculate_cost(currentstate)
-
-    # Loops through connections to find minimum cost
-    while current_temp > final_temp:
-        for house in currentstate.connections:
-            randomhouse = random.choice(currentstate.houses).id
-                
-            # Swap batteries between house and random house
-            temp = currentstate.connections[house]
-            currentstate.connections[house] = currentstate.connections[randomhouse] 
-            currentstate.connections[randomhouse] = temp
-            
+            # Initializes current state with district
+            currentstate = random_assignment_repeat(district)
+            solution = currentstate
             length = cable_length(currentstate)
-            cost = calculate_cost(currentstate)
+            optimalcost = calculate_cost(currentstate)
 
-            # Accepts a new optimal cost and solution if cost is smaller
-            if cost < optimalcost:
-                optimalcost = cost
-                solution = currentstate
-            else:
-                # Calculate the probability of accepting this new currentstate
-                delta = optimalcost - cost
-                probability = math.exp(-delta / current_temp)
+            # Loops through connections to find minimum cost
+            while current_temp > final_temp:
+                for house in currentstate.connections:
+                    randomhouse = random.choice(currentstate.houses).id
+                        
+                    # Swap batteries between house and random house
+                    temp = currentstate.connections[house]
+                    currentstate.connections[house] = currentstate.connections[randomhouse] 
+                    currentstate.connections[randomhouse] = temp
+                    
+                    length = cable_length(currentstate)
+                    cost = calculate_cost(currentstate)
 
-                # Pull a random number between 0 and 1 and see if we accept
-                if random.random() < probability:
-                    optimalcost = cost
-                    solution = currentstate
-        # Decreases the temperature
-        current_temp = current_temp * alpha
+                    # Accepts a new optimal cost and solution if cost is smaller
+                    if cost < optimalcost:
+                        optimalcost = cost
+                        solution = currentstate
+                    else:
+                        # Calculate the probability of accepting this new currentstate
+                        delta = optimalcost - cost
+                        probability = math.exp(-delta / current_temp)
+
+                        # Pull a random number between 0 and 1 and see if we accept
+                        if random.random() < probability:
+                            optimalcost = cost
+                            solution = currentstate
+                # Decreases the temperature
+                current_temp = current_temp * alpha
     return solution
 
 def optimalconnections(solution):

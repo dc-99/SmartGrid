@@ -1,44 +1,52 @@
 from district import District
+from .randomise import random_assignment, random_assignment_repeat
 import copy 
+import time
 
 
 def swapbatteries(district):
     """
     Swaps the batteries of two neighbouring houses if this results in a shorter connection length
     """
-    currentstate = copy.deepcopy(district)
-    cost = calculate_cost(currentstate)
-    optimalcost = cost
-    for i in range(len(district.connections)):
-        for j in range(i+1, len(district.connections)):
-
-            # Swaps the batteries between the houses in the connections dictionary
-            temp = currentstate.connections[i]
-            currentstate.connections[i] = currentstate.connections[j]
-            currentstate.connections[j] = temp
-
-            # Swaps the cables between the houses in House objects
-            temp = currentstate.houses[i].cables
-            currentstate.houses[i].cables = currentstate.houses[j].cables
-            currentstate.houses[j].cables = temp
-
-            currentcapacity = currentstate.connections[i].currentcapacity - currentstate.houses[i].maxoutput + currentstate.houses[j].maxoutput 
-            maxcapacity = currentstate.connections[i].maxcapacity
+    timeout = time.time() + 60*180 
+    while True:
+        if time.time() > timeout:
+            break
+        else:
+            currentstate = random_assignment_repeat(district)
             cost = calculate_cost(currentstate)
+            optimalcost = cost
+            for i in range(len(district.connections)):
+                for j in range(i+1, len(district.connections)):
 
-            # Swaps batteries and cables back if swap was invalid
-            if currentcapacity > maxcapacity or cost > optimalcost:
-                temp = currentstate.connections[i]
-                currentstate.connections[i] = currentstate.connections[j]
-                currentstate.connections[j] = temp
+                    # Swaps the batteries between the houses in the connections dictionary
+                    temp = currentstate.connections[i]
+                    currentstate.connections[i] = currentstate.connections[j]
+                    currentstate.connections[j] = temp
 
-                temp = currentstate.houses[i].cables
-                currentstate.houses[i].cables = currentstate.houses[j].cables
-                currentstate.houses[j].cables = temp
+                    # Swaps the cables between the houses in House objects
+                    temp = currentstate.houses[i].cables
+                    currentstate.houses[i].cables = currentstate.houses[j].cables
+                    currentstate.houses[j].cables = temp
 
-            # Sets optimalcost to the current cost if it is lower
-            if cost < optimalcost:
-                optimalcost = cost
+                    currentcapacity = currentstate.connections[i].currentcapacity - currentstate.houses[i].maxoutput + currentstate.houses[j].maxoutput 
+                    maxcapacity = currentstate.connections[i].maxcapacity
+                    cost = calculate_cost(currentstate)
+
+                    # Swaps batteries and cables back if swap was invalid
+                    if currentcapacity > maxcapacity or cost > optimalcost:
+                        temp = currentstate.connections[i]
+                        currentstate.connections[i] = currentstate.connections[j]
+                        currentstate.connections[j] = temp
+
+                        temp = currentstate.houses[i].cables
+                        currentstate.houses[i].cables = currentstate.houses[j].cables
+                        currentstate.houses[j].cables = temp
+
+                    # Sets optimalcost to the current cost if it is lower
+                    if cost < optimalcost:
+                        optimalcost = cost
+        print(optimalcost)
     return currentstate
 
     

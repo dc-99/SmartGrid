@@ -25,24 +25,19 @@ if __name__ == "__main__":
 
 if sys.argv[2] == "randomise":
     district = randomise.random_assignment_repeat(district)
-    # length = hillclimber.cable_length(district)
     totalcost = hillclimber.calculate_cost(district)
 
 # --------------------------- Hillclimber ----------------------------------
 
 if sys.argv[2] == "hillclimber":
-    district = randomise.random_assignment_repeat(district)
-    currentstate = hillclimber.swapbatteries(district)
-    # length = hillclimber.cable_length(currentstate)
+    district = hillclimber.swapbatteries(district)
     totalcost = hillclimber.calculate_cost(district)
 
 # --------------------------- Simulated annealing ---------------------------
 
 if sys.argv[2] == "simulatedannealing":
-    district = randomise.random_assignment_repeat(district)
     solution = simulatedannealing.simulated_annealing(district)
     district = simulatedannealing.optimalconnections(solution)
-    # length = hillclimber.cable_length(district)
     totalcost = hillclimber.calculate_cost(district)
 
 # --------------------------- Visualisation / Output -------------------------
