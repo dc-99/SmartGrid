@@ -17,7 +17,7 @@ def random_assignment(district, maxcount=50):
     """
     Connects every house to a random battery with straight connections from house x to battery x and from house y to battery y
     """
-    timeout = time.time() + 60*180 
+    timeout = time.time() + 60*0.1
     while True:
         if time.time() > timeout:
             break
@@ -34,6 +34,7 @@ def random_assignment(district, maxcount=50):
                 x_coordinates = []
                 y_coordinates = []
                 cables = []
+                district.houses[house].cables = cables
                 
                 # Chooses random battery until a valid connection is made between a house and battery
                 while connected == False and counter < maxcount:
