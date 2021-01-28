@@ -1,5 +1,5 @@
 from district import District
-from .randomise import random_assignment, random_assignment_repeat
+#from .randomise import random_assignment, random_assignment_repeat
 import copy 
 import time
 
@@ -13,7 +13,7 @@ def swapbatteries(district):
         if time.time() > timeout:
             break
         else:
-            currentstate = random_assignment_repeat(district)
+            #currentstate = random_assignment_repeat(district)
             cost = calculate_cost(currentstate)
             optimalcost = cost
             for i in range(len(currentstate.connections)):
