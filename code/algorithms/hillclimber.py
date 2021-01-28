@@ -1,5 +1,5 @@
 from district import District
-#from .randomise import random_assignment, random_assignment_repeat
+from .randomise import random_assignment, random_assignment_repeat
 import copy 
 import time
 
@@ -13,12 +13,11 @@ def swapbatteries(district):
         if time.time() > timeout:
             break
         else:
-            #currentstate = random_assignment_repeat(district)
+            currentstate = random_assignment_repeat(district)
             cost = calculate_cost(currentstate)
             optimalcost = cost
-            for i in range(len(district.connections)):
-                for j in range(i+1, len(district.connections)):
-
+            for i in range(len(currentstate.connections)):
+                for j in range(i+1, len(currentstate.connections)):
                     # Swaps the batteries between the houses in the connections dictionary
                     temp = currentstate.connections[i]
                     currentstate.connections[i] = currentstate.connections[j]
@@ -46,7 +45,7 @@ def swapbatteries(district):
                     # Sets optimalcost to the current cost if it is lower
                     if cost < optimalcost:
                         optimalcost = cost
-        print(optimalcost)
+            print("hillclimber", optimalcost)
     return currentstate
 
     
