@@ -8,7 +8,6 @@ if rootDir not in sys.path:
     sys.path.append(rootDir)
 
 from district import District
-# from .hillclimber import calculate_cost
 from random import choice
 import numpy
 
@@ -66,8 +65,6 @@ def random_assignment(district, maxcount=50):
             cables.append(str(coordinates))
 
         district.houses[house].cables = cables
-        # cost = calculate_cost(district)
-        # print("random", cost)
     return district      
 
 

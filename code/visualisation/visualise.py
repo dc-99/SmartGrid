@@ -29,5 +29,5 @@ def visualise(district):
     
     plt.xlabel("x-coordinates")
     plt.ylabel("y-coordinates")
-    plt.title("Houses (red) and batteries (blue) in district 1 connected")
+    plt.title("Houses (red) and batteries (blue) in given district with cables")
     plt.show()

@@ -23,9 +23,7 @@ def simulated_annealing(district):
 
             # Initializes current state with district
             currentstate = random_assignment_repeat(district)
-            print("random werkt")
             solution = currentstate
-            #length = cable_length(currentstate)
             optimalcost = calculate_cost(currentstate)
 
             # Loops through connections to find minimum cost
@@ -37,8 +35,7 @@ def simulated_annealing(district):
                     temp = currentstate.connections[house]
                     currentstate.connections[house] = currentstate.connections[randomhouse] 
                     currentstate.connections[randomhouse] = temp
-                    
-                    #length = cable_length(currentstate)
+
                     cost = calculate_cost(currentstate)
 
                     # Accepts a new optimal cost and solution if cost is smaller
@@ -58,7 +55,6 @@ def simulated_annealing(district):
                 current_temp = current_temp * alpha
             optimaldistrict = optimalconnections(solution)
             optimalcosts = calculate_cost(optimaldistrict)
-            print("simulated annealing", optimalcosts)
     return solution
 
 def optimalconnections(solution):
